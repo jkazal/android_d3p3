@@ -17,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import me.linshen.retrofit2.adapter.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -48,12 +49,14 @@ object AppModule : CoroutineScope {
                 .client(loOkHttpClient)
                 .baseUrl("https://rickandmortyapi.com/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .build()
         }
         else {
             return Retrofit.Builder()
                 .baseUrl("https://rickandmortyapi.com/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .build()
         }
     }
