@@ -15,6 +15,7 @@ import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.CharactersFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
+import com.example.rickandmorty.data.entities.Character
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +31,11 @@ class CharactersFragment : Fragment(), CharactersAdapter.CharacterItemListener {
     ): View? {
         binding = CharactersFragmentBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.initCharacters()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +55,11 @@ class CharactersFragment : Fragment(), CharactersAdapter.CharacterItemListener {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    if (!it.data.isNullOrEmpty()) adapter.setItems(ArrayList(it.data))
+                    if (!it.data?.results?.isEmpty()!!) {
+                        var charArrayList : ArrayList<Character> = ArrayList<Character>()
+                        charArrayList = ArrayList(it.data?.results)
+                        adapter.setItems(charArrayList)
+                    }
                 }
                 Resource.Status.ERROR ->
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
