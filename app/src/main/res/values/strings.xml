@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
+    <string name="place_new_reservation">New reservation...</string>
+    <string name="open_room">Open</string>
+    <string name="occupied_room">Occupied</string>
+    <string name="init_room">Initialising</string>
+    <string name="edit_settings">Edit settings</string>
 </resources>
