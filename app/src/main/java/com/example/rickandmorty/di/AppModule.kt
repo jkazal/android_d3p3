@@ -5,6 +5,12 @@ import com.example.rickandmorty.data.local.AppDatabase
 import com.example.rickandmorty.data.local.CharacterDao
 import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
 import com.example.rickandmorty.data.remote.CharacterService
+import com.example.rickandmorty.data.remote.reservations.ReservationRemoteDataSource
+import com.example.rickandmorty.data.remote.reservations.ReservationService
+import com.example.rickandmorty.data.remote.spaces.SpaceRemoteDataSource
+import com.example.rickandmorty.data.remote.spaces.SpaceService
+import com.example.rickandmorty.data.remote.users.UserRemoteDataSource
+import com.example.rickandmorty.data.remote.users.UserService
 import com.example.rickandmorty.data.repository.CharacterRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -44,7 +50,7 @@ object AppModule : CoroutineScope {
                 loProxy = Proxy(Proxy.Type.HTTP, InetSocketAddress(lsProxyHost, lsProxyPort))
                 loOkHttpClient = OkHttpClient.Builder().proxy(loProxy).build()
             }
-            Thread.sleep(2000)
+            Thread.sleep(500)
             return Retrofit.Builder()
                 .client(loOkHttpClient)
                 .baseUrl("https://rickandmortyapi.com/api/")
@@ -70,6 +76,27 @@ object AppModule : CoroutineScope {
     @Singleton
     @Provides
     fun provideCharacterRemoteDataSource(characterService: CharacterService) = CharacterRemoteDataSource(characterService)
+
+    @Provides
+    fun provideReservationService(retrofit: Retrofit): ReservationService = retrofit.create(ReservationService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideReservationRemoteDataSource(reservationService: ReservationService) = ReservationRemoteDataSource(reservationService)
+
+    @Provides
+    fun provideUserService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUserRemoteDataSource(userService: UserService) = UserRemoteDataSource(userService)
+
+    @Provides
+    fun provideSpaceService(retrofit: Retrofit): SpaceService = retrofit.create(SpaceService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSpaceRemoteDataSource(spaceService: SpaceService) = SpaceRemoteDataSource(spaceService)
 
     @Singleton
     @Provides
