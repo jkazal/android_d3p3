@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
-    <string name="place_new_reservation">New reservation...</string>
+    <string name="place_new_reservation">New reservation…</string>
     <string name="open_room">Open</string>
     <string name="occupied_room">Occupied</string>
     <string name="init_room">Initialising</string>
     <string name="edit_settings">Edit settings</string>
+    <string name="set_date_to_today">View today</string>
+    <string name="select_date">Select date</string>
+    <string name="current_meeting">Current meeting information</string>
+    <string name="none">None</string>
+    <string name="organizer">Organizer</string>
+    <string name="participants">Participants</string>
+    <string name="loading">Loading</string>
+
 </resources>
