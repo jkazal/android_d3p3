@@ -16,12 +16,13 @@ import com.example.rickandmorty.databinding.CharactersFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
+import com.example.rickandmorty.databinding.InitialFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InitialFragment : Fragment(), InitialSpaceAdapter.CharacterItemListener {
+class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
-    private var binding: CharactersFragmentBinding by autoCleared()
+    private var binding: InitialFragmentBinding by autoCleared()
     private val viewModel: InitialViewModel by viewModels()
     private lateinit var adapter: InitialViewModel
 
@@ -29,7 +30,7 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.CharacterItemListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = CharactersFragmentBinding.inflate(inflater, container, false)
+        binding = InitialFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 

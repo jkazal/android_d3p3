@@ -76,17 +76,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-                <TextView
-                    android:id="@+id/currentMeetingStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/current_meeting"
-                    android:layout_gravity="center"
-                    android:textStyle="bold" />
 
                 <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
                     <LinearLayout
-                        android:layout_weight="0.75"
+                        android:layout_weight="0.25"
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:orientation="vertical"
@@ -96,20 +89,112 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/organizer"
-                            android:layout_gravity="center"
+                            android:layout_gravity="right"
                             android:textStyle="bold" />
 
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_weight="1.25"
+                        android:layout_weight="0.75"
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:orientation="vertical"
                         android:padding="5dp"
                         >
+                        <TextView
+                            android:id="@+id/initialOrganizerOccupiedLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
 
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
+                    <LinearLayout
+                        android:layout_weight="0.25"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/meeting_name"
+                            android:layout_gravity="right"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="0.75"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:id="@+id/initialMeetingNameOccupiedLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
+                    <LinearLayout
+                        android:layout_weight="0.25"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date_start"
+                            android:layout_gravity="right"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="0.75"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:id="@+id/initialTimeStartOccupiedLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
+                    </LinearLayout>
+                </LinearLayout>
 
+                <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
+                    <LinearLayout
+                        android:layout_weight="0.25"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date_end"
+                            android:layout_gravity="right"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="0.75"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
+                        <TextView
+                            android:id="@+id/initialTimeEndOccupiedLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading" />
                     </LinearLayout>
                 </LinearLayout>
       </LinearLayout>
@@ -157,7 +242,7 @@
 
 
                     <ProgressBar
-                        android:id="@+id/progress_bar"
+                        android:id="@+id/initial_progress_bar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"

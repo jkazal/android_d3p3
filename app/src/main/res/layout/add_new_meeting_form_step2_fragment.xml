@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.initial.AddNewMeetingFormStep2Fragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="@string/participants" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="0.01">
+            <LinearLayout
+                android:layout_weight="0.75"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="30sp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.25"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:gravity="center"
+                >
+                <ImageButton
+                    android:id="@+id/addNewForm3SearchParticipantBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:backgroundTint="@color/success" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="0.75">
+            <LinearLayout
+                android:layout_weight="0.75"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:background="@drawable/layout_border_basic"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/addnew_step2_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ProgressBar
+                    android:id="@+id/addnew_step2_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.25"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:gravity="center"
+                >
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="0.05">
+            <Button
+            android:id="@+id/addNewForm2Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="@string/next"
+            android:gravity="center"
+            android:layout_margin="30dp"
+            android:backgroundTint="@color/success"/>
+
+            </LinearLayout>
+        </LinearLayout>
+</FrameLayout>

@@ -10,7 +10,22 @@
     <string name="current_meeting">Current meeting information</string>
     <string name="none">None</string>
     <string name="organizer">Organizer</string>
+    <string name="meeting_name">Topic</string>
+    <string name="date_start">Début</string>
+    <string name="date_end">Fin</string>
     <string name="participants">Participants</string>
     <string name="loading">Loading</string>
-
+    <string name="date">Date</string>
+    <string name="date_start_full">Heure de début</string>
+    <string name="date_end_full">Heure de fin</string>
+    <string name="Select">Select</string>
+    <string name="selected">Selected</string>
+    <string name="next">Next step</string>
+    <string name="select_room">Select room</string>
+    <string name="finish_add_desc">To confirm the creation of this meeting, please provide your login information.</string>
+    <string name="your_login">Your login</string>
+    <string name="your_password">Your password</string>
+    <string name="create_meeting">Create meeting</string>
+    <string name="finish">Add meeting</string>
+    <string name="search">Search</string>
 </resources>
