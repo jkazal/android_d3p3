@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.characters
+package com.example.rickandmorty.ui.meetingdetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,30 +12,30 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.SettingsFragmentBinding
+import com.example.rickandmorty.databinding.MeetingDetailFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
+class MeetingDetailFragment : Fragment(), MeetingDetailAdapter.CharacterItemListener {
 
-    private var binding: SettingsFragmentBinding by autoCleared()
-    private val viewModel: SettingsViewModel by viewModels()
-    private lateinit var adapter: SettingsAdapter
+    private var binding: MeetingDetailFragmentBinding by autoCleared()
+    private val viewModel: MeetingDetailViewModel by viewModels()
+    private lateinit var adapter: MeetingDetailAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SettingsFragmentBinding.inflate(inflater, container, false)
+        binding = MeetingDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.initSettings()
+        viewModel.initMeetingDetail()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
     }
 
     private fun setupRecyclerView() {
-        adapter = SettingsAdapter(this)
+        adapter = MeetingDetailAdapter(this)
         binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
         binding.charactersRv.adapter = adapter
     }

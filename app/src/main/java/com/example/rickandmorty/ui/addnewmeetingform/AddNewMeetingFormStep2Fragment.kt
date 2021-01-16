@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.characters
+package com.example.rickandmorty.ui.addnewmeetingform
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,30 +12,30 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.SettingsFragmentBinding
+import com.example.rickandmorty.databinding.AddNewMeetingFormStep2FragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
+class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter.CharacterItemListener {
 
-    private var binding: SettingsFragmentBinding by autoCleared()
-    private val viewModel: SettingsViewModel by viewModels()
-    private lateinit var adapter: SettingsAdapter
+    private var binding: AddNewMeetingFormStep2FragmentBinding by autoCleared()
+    private val viewModel: AddNewMeetingFormStep2ViewModel by viewModels()
+    private lateinit var adapter: AddNewMeetingFormStep2Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SettingsFragmentBinding.inflate(inflater, container, false)
+        binding = AddNewMeetingFormStep2FragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.initSettings()
+        viewModel.initAddNewMeetingFormStep2()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
     }
 
     private fun setupRecyclerView() {
-        adapter = SettingsAdapter(this)
+        adapter = AddNewMeetingFormStep2Adapter(this)
         binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
         binding.charactersRv.adapter = adapter
     }
