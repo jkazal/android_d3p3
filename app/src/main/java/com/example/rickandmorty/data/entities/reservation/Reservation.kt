@@ -10,6 +10,7 @@ import java.util.*
 data class Reservation(
     @PrimaryKey
     val id: String,
+    val label: String,
     val dateDebut: String,
     val dateFin: String,
     val organizer: User,

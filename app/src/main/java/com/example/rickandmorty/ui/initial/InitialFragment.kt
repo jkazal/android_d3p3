@@ -71,10 +71,11 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
         })
     }
 
-    override fun onClickedCharacter(characterId: Int) {
+    override fun onClickedMeetingRecycler(reservationId: String) {
         findNavController().navigate(
             R.id.action_charactersFragment_to_characterDetailFragment,
-            bundleOf("id" to characterId)
+            bundleOf("id" to reservationId)
         )
+        TODO("Effectuer la navigation vers les détails")
     }
 }
