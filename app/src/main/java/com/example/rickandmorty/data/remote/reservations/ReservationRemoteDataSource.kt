@@ -9,10 +9,13 @@ class ReservationRemoteDataSource @Inject constructor(
 
 //    suspend fun getCharacters() = getResult { reservationService.getAllCharacters() }
 //    suspend fun getCharacter(id: Int) = getResult { reservationService.getCharacter(id) }
-    suspend fun getReservations(
-        roomId: Int,
+    // NOTE: La date doit être au format YYYY-MM-DD. (ex: 2021-01-09)
+    suspend fun getUpcomingMeetingsForDate(
+        roomId: String,
         date: String
     ) = getResult { reservationService.getReservations(roomId, date) }
+
+    suspend fun getReservationById ( id: String ) = getResult { reservationService.getReservationById(id) }
 
     suspend fun createReservation (
         dDebut: String,

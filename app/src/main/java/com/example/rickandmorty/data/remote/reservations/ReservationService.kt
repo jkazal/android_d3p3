@@ -1,5 +1,6 @@
 package com.example.rickandmorty.data.remote.reservations
 
+import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.entities.reservation.ReservationAddResult
 import com.example.rickandmorty.data.entities.reservation.ReservationList
 import retrofit2.Response
@@ -13,8 +14,8 @@ interface ReservationService {
 //    @GET("character/{id}")
 //    suspend fun getCharacter(@Path("id") id: Int): Response<Character>
 
-    @GET("reservations/{roomId}?date={YyyyMmDdDate}")
-    suspend fun getReservations(@Path("roomId") roomId: Int,
+    @GET("reservations/upcoming?roomId={roomId}&date={YyyyMmDdDate}")
+    suspend fun getReservations(@Path("roomId") roomId: String,
                                 @Path("YyyyMmDdDate") date: String)
                                 : Response<ReservationList>
 
@@ -31,5 +32,7 @@ interface ReservationService {
         @Field("participantIdList") participantIdList: Array<String>
     ): Response<ReservationAddResult>
 
+    @GET("reservations/{reservationId}")
+    suspend fun getReservationById ( @Field("reservationId") reservationId: String) : Response<Reservation>
 
 }

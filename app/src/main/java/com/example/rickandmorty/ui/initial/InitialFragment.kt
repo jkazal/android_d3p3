@@ -16,6 +16,7 @@ import com.example.rickandmorty.databinding.CharactersFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
+import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.databinding.InitialFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,7 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     private var binding: InitialFragmentBinding by autoCleared()
     private val viewModel: InitialViewModel by viewModels()
-    private lateinit var adapter: InitialViewModel
+    private lateinit var adapter: InitialSpaceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +37,7 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     override fun onStart() {
         super.onStart()
-        viewModel.initCharacters()
+        viewModel.initUpcomingMeetings()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,26 +48,26 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     private fun setupRecyclerView() {
         adapter = InitialSpaceAdapter(this)
-        binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
-        binding.charactersRv.adapter = adapter
+        binding.initialViewRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.initialViewRv.adapter = adapter
     }
 
     private fun setupObservers() {
-        viewModel.characters.observe(viewLifecycleOwner, Observer {
+        viewModel.upcomingMeetings.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.initialProgressBar.visibility = View.GONE
                     if (!it.data?.results?.isEmpty()!!) {
-                        var charArrayList : ArrayList<Character> = ArrayList<Character>()
-                        charArrayList = ArrayList(it.data?.results)
-                        adapter.setItems(charArrayList)
+                        var reunionArrayList : ArrayList<Reservation> = ArrayList<Reservation>()
+                        reunionArrayList = ArrayList(it.data?.results)
+                        adapter.setItems(reunionArrayList)
                     }
                 }
                 Resource.Status.ERROR ->
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                 Resource.Status.LOADING ->
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.initialProgressBar.visibility = View.VISIBLE
             }
         })
     }

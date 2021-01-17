@@ -3,6 +3,7 @@ package com.example.rickandmorty.di
 import android.content.Context
 import com.example.rickandmorty.data.local.AppDatabase
 import com.example.rickandmorty.data.local.CharacterDao
+import com.example.rickandmorty.data.local.SettingsDao
 import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
 import com.example.rickandmorty.data.remote.CharacterService
 import com.example.rickandmorty.data.remote.reservations.ReservationRemoteDataSource
@@ -12,6 +13,8 @@ import com.example.rickandmorty.data.remote.spaces.SpaceService
 import com.example.rickandmorty.data.remote.users.UserRemoteDataSource
 import com.example.rickandmorty.data.remote.users.UserService
 import com.example.rickandmorty.data.repository.CharacterRepository
+import com.example.rickandmorty.data.repository.ReservationRepository
+import com.example.rickandmorty.data.repository.SettingsRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -108,9 +111,24 @@ object AppModule : CoroutineScope {
 
     @Singleton
     @Provides
+    fun provideSettingsDao(db: AppDatabase) = db.settingsDao()
+
+    /* --------------REPOSITORIES------------------ */
+
+
+    @Singleton
+    @Provides
     fun provideRepository(remoteDataSource: CharacterRemoteDataSource,
                           localDataSource: CharacterDao) =
         CharacterRepository(remoteDataSource, localDataSource)
+
+    @Singleton
+    @Provides
+    fun provideReservationRepository(reservationRemoteDataSource: ReservationRemoteDataSource) = ReservationRepository(reservationRemoteDataSource)
+
+    @Singleton
+    @Provides
+    fun provideSettingsRepository(localDataSource: SettingsDao) = SettingsRepository(localDataSource)
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO
