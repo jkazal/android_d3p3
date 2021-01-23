@@ -23,6 +23,11 @@
                 android:text="@string/select_room"
                 android:padding="10sp"
                 android:gravity="center" />
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Go" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/settings_rv"
                 android:layout_width="match_parent"

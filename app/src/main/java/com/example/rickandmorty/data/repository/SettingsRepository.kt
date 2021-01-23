@@ -1,19 +1,15 @@
 package com.example.rickandmorty.data.repository
 
+import android.R.attr.path
+import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.rickandmorty.data.entities.Character
-import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.SettingsEntity
-import com.example.rickandmorty.data.local.CharacterDao
 import com.example.rickandmorty.data.local.SettingsDao
-import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
-import com.example.rickandmorty.utils.Resource
-import com.example.rickandmorty.utils.performGetOperation
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import java.io.File
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
+
 
 class SettingsRepository @Inject constructor(
     private val localDataSource: SettingsDao
@@ -25,5 +21,30 @@ class SettingsRepository @Inject constructor(
     suspend fun updateSettings(roomId: String, date: String) {
         val entity: SettingsEntity = SettingsEntity(0, roomId, date)
         return localDataSource.insertSettings(entity)
+    }
+
+    fun updateSettingsJson(roomId: String, date: String) {
+
+    }
+
+    fun getJsonBodyFromConfig(context: Context): JsonObject {
+        val file = File(context.filesDir, "config.json")
+        val content: String = String(file.readBytes())
+        return JsonParser().parse(content).asJsonObject
+    }
+
+    fun getCurrentRoomId(context: Context): String {
+        val jso = getJsonBodyFromConfig(context)
+        return jso.get("roomId").asString
+    }
+
+    fun getCurrentSelectedDate(context: Context): String {
+        val jso = getJsonBodyFromConfig(context)
+        return jso.get("date").asString
+    }
+
+    public class SettingsFormat {
+        public var roomId: String = ""
+        public var date: String = ""
     }
 }

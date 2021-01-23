@@ -1,25 +1,32 @@
 package com.example.rickandmorty.ui.settings
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
+import com.example.rickandmorty.data.entities.spaces.D3P3Space
 import com.example.rickandmorty.databinding.SettingsFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
-import com.example.rickandmorty.data.entities.Character
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
+class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
 
     private var binding: SettingsFragmentBinding by autoCleared()
     private val viewModel: SettingsViewModel by viewModels()
@@ -46,34 +53,49 @@ class SettingsFragment : Fragment(), SettingsAdapter.CharacterItemListener {
 
     private fun setupRecyclerView() {
         adapter = SettingsAdapter(this)
-        binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
-        binding.charactersRv.adapter = adapter
+        binding.settingsRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.settingsRv.adapter = adapter
     }
 
     private fun setupObservers() {
-        viewModel.characters.observe(viewLifecycleOwner, Observer {
+        viewModel.spaces.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.settingsProgressBar.visibility = View.GONE
                     if (!it.data?.results?.isEmpty()!!) {
-                        var charArrayList : ArrayList<Character> = ArrayList<Character>()
-                        charArrayList = ArrayList(it.data?.results)
-                        adapter.setItems(charArrayList)
+                        var spaceArrayList : ArrayList<D3P3Space> = ArrayList<D3P3Space>()
+                        spaceArrayList = ArrayList(it.data?.results)
+                        adapter.setItems(spaceArrayList)
                     }
                 }
                 Resource.Status.ERROR ->
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                 Resource.Status.LOADING ->
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.settingsProgressBar.visibility = View.VISIBLE
             }
         })
     }
 
-    override fun onClickedCharacter(characterId: Int) {
-        findNavController().navigate(
-            R.id.action_charactersFragment_to_characterDetailFragment,
-            bundleOf("id" to characterId)
-        )
+    override fun onClickedRoom(roomId: String) {
+        // Write roomId to json file
+        val filename = "config.json"
+        val curDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        val jObject = JsonObject()
+        jObject.addProperty("roomId", roomId)
+        jObject.addProperty("date", curDate)
+        val jsonBody : String = Gson().toJson(jObject)
+        val outputStream: FileOutputStream
+
+        try {
+            outputStream = requireContext().openFileOutput(filename, Context.MODE_PRIVATE)
+            outputStream.write(jsonBody.toByteArray())
+            outputStream.close()
+
+            findNavController().navigate(R.id.action_settingsFragment_to_initialFragment)
+            // TODO: Ajouter un bouton reload au navhostfragment
+        } catch (e: Exception) {
+            Log.d("ERROR", e.stackTrace.toString())
+        }
     }
 }

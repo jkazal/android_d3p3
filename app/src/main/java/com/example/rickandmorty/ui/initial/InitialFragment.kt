@@ -1,6 +1,7 @@
 package com.example.rickandmorty.ui.initial
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,8 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
     private var binding: InitialFragmentBinding by autoCleared()
     private val viewModel: InitialViewModel by viewModels()
     private lateinit var adapter: InitialSpaceAdapter
+    private var mInterval = 5000
+    private var mHandler : Handler = Handler()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,15 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     override fun onStart() {
         super.onStart()
+        mHandler = Handler()
+        loadContents()
+    }
+
+    fun loadContents() {
+        // TODO: Init meetings
+        // Init room number
+        // Init room status (open?, closed?)
+
         viewModel.initUpcomingMeetings()
     }
 

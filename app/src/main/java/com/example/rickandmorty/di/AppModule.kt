@@ -107,10 +107,6 @@ object AppModule : CoroutineScope {
 
     @Singleton
     @Provides
-    fun provideCharacterDao(db: AppDatabase) = db.characterDao()
-
-    @Singleton
-    @Provides
     fun provideSettingsDao(db: AppDatabase) = db.settingsDao()
 
     /* --------------REPOSITORIES------------------ */

@@ -43,16 +43,6 @@
                     android:src="@android:drawable/ic_plus"
                     android:textSize="24sp"/>
 
-
-                <ImageButton
-                    android:id="@+id/settingsBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/info"
-                    android:gravity="center"
-                    android:layout_gravity="right"
-                    android:src="@android:drawable/ic_settings" />
-
             </LinearLayout>
             <TextView
                 android:id="@+id/roomNumberHolder"

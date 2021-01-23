@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/initialFragment">
+    app:startDestination="@id/settingsFragment">
 
     <fragment
         android:id="@+id/charactersFragment"
@@ -29,9 +29,6 @@
             android:id="@+id/action_initialFragment_to_meetingDetailFragment3"
             app:destination="@id/meetingDetailFragment" />
         <action
-            android:id="@+id/action_initialFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
             android:id="@+id/action_initialFragment_to_addNewMeetingFormStep1Fragment"
             app:destination="@id/addNewMeetingFormStep1Fragment" />
     </fragment>
@@ -49,7 +46,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.rickandmorty.ui.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/settings_fragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_initialFragment"
+            app:destination="@id/initialFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addNewMeetingFormStep1Fragment"
         android:name="com.example.rickandmorty.ui.addnewmeetingform.AddNewMeetingFormStep1Fragment"
@@ -67,6 +68,15 @@
         <action
             android:id="@+id/action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment"
             app:destination="@id/addNewMeetingFormStep3Fragment" />
+        <argument
+            android:name="startTime"
+            app:argType="string" />
+        <argument
+            android:name="endTime"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addNewMeetingFormStep3Fragment"
@@ -77,5 +87,16 @@
             android:id="@+id/action_addNewMeetingFormStep3Fragment_to_initialFragment"
             app:destination="@id/initialFragment"
             app:launchSingleTop="true" />
+        <argument
+            android:name="startTime"
+            app:argType="string" />
+        <argument android:name="endTime"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="userIdArray"
+            app:argType="string[]" />
     </fragment>
 </navigation>

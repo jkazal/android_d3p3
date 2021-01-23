@@ -6,20 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.entities.CharacterList
+import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.repository.CharacterRepository
+import com.example.rickandmorty.data.repository.ReservationRepository
 import com.example.rickandmorty.utils.Resource
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class MeetingDetailViewModel @ViewModelInject constructor(
-    private val repository: CharacterRepository
+    private val repository: ReservationRepository
 ) : ViewModel(), CoroutineScope {
 
-    val characters : MutableLiveData<Resource<CharacterList>> = MutableLiveData<Resource<CharacterList>>()
+    val meetingId = MutableLiveData<String>()
+    val meeting : MutableLiveData<Resource<Reservation>> = MutableLiveData<Resource<Reservation>>()
 
     fun initCharacters() {
         launch {
-            characters.postValue(repository.getCharacters())
+            meeting.postValue(repository.getReservation())
             Log.d("DEBUG", characters.value.toString())
         }
     }
