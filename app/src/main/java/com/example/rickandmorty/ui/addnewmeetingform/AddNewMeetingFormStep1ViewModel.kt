@@ -10,7 +10,6 @@ import com.example.rickandmorty.data.repository.CharacterRepository
 import com.example.rickandmorty.utils.Resource
 
 class AddNewMeetingFormStep1ViewModel @ViewModelInject constructor(
-    private val repository: CharacterRepository
 ) : ViewModel() {
-
+    val topicName = MutableLiveData<String>("")
 }

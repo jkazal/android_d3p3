@@ -28,13 +28,10 @@ class InitialViewModel @ViewModelInject constructor(
     val upcomingMeetings : MutableLiveData<Resource<ReservationList>> = MutableLiveData<Resource<ReservationList>>()
     var currentTime: String =
         SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-    var date: String = ""
-    var roomId: String = ""
+    val date: String = ""
+    val roomId: String = ""
     fun initUpcomingMeetings() {
-        settingsRepository.getCurrentRoomId() // TODO GET CONTEXT
         getUpcomingMeetings()
-        // TODO: get room Number
-        // Todo: get currentSelectedDate
     }
 
     fun turnTimeToNumber(time: String): Int {
@@ -42,6 +39,9 @@ class InitialViewModel @ViewModelInject constructor(
         return Integer.parseInt(strNew)
     }
 
+    fun getSettingsRepo () : SettingsRepository{
+        return settingsRepository
+    }
     fun String.insert(index: Int, string: String): String {
         return this.substring(0, index) + string + this.substring(index, this.length)
     }
@@ -57,15 +57,16 @@ class InitialViewModel @ViewModelInject constructor(
 
     fun getUpcomingMeetings() {
         launch {
-            val settings: LiveData<SettingsEntity> = settingsDao.getCurrentSettings()
-            upcomingMeetings.postValue(settings.value?.roomId?.let {
-                settings.value?.date?.let { it1 ->
-                    reservationRepository.getUpcomingMeetingsForDate(
-                        it,
-                        it1
-                    )
-                }
-            })
+//            val settings: LiveData<SettingsEntity> = settingsDao.getCurrentSettings()
+//            upcomingMeetings.postValue(settings.value?.roomId?.let {
+//                settings.value?.date?.let { it1 ->
+//                    reservationRepository.getUpcomingMeetingsForDate(
+//                        it,
+//                        it1
+//                    )
+//                }
+//            })
+            upcomingMeetings.postValue(reservationRepository.getUpcomingMeetingsForDate(roomId, date))
 
             // si on arrive pas à lire de la base de manière sync :
             // val settingsEntity: SettingsEntity = settingsDao.getCurrentSettings() // (avec getCurrentSettings ne renvoyant pas un livedata)

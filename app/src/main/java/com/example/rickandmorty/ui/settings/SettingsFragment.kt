@@ -93,7 +93,6 @@ class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
             outputStream.close()
 
             findNavController().navigate(R.id.action_settingsFragment_to_initialFragment)
-            // TODO: Ajouter un bouton reload au navhostfragment
         } catch (e: Exception) {
             Log.d("ERROR", e.stackTrace.toString())
         }

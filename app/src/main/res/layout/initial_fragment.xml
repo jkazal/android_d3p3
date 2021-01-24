@@ -26,22 +26,25 @@
                     android:id="@+id/setDateToTodayBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/set_date_to_today"
-                    android:drawableLeft="@android:drawable/ic_menu_agenda"/>
+                    android:text="@string/set_date_to_today" />
                 <Button
                     android:id="@+id/selectDateBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/select_date"
                     />
-                <ImageButton
+                <Button
                     android:id="@+id/newReservationBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:padding="16dp"
-                    android:backgroundTint="@color/success"
-                    android:src="@android:drawable/ic_plus"
-                    android:textSize="24sp"/>
+                    android:text="@string/place_new_reservation"
+                    android:backgroundTint="@color/success"/>
+                <Button
+                    android:id="@+id/refreshStatusBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/refresh"
+                    android:backgroundTint="@color/info"/>
 
             </LinearLayout>
             <TextView

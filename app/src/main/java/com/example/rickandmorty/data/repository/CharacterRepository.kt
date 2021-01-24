@@ -13,16 +13,16 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 class CharacterRepository @Inject constructor(
-    private val remoteDataSource: CharacterRemoteDataSource,
-    private val localDataSource: CharacterDao
+    // private val remoteDataSource: CharacterRemoteDataSource,
+    // private val localDataSource: CharacterDao
 ) {
-    suspend fun getCharacter(id: Int) : Character? {
-        return remoteDataSource.getCharacter(id).data
-    }
+    //suspend fun getCharacter(id: Int) : Character? {
+    //    return remoteDataSource.getCharacter(id).data
+    //}
 
-    suspend fun getCharacters(): Resource<CharacterList> {
-        return remoteDataSource.getCharacters()
-    }
+    //suspend fun getCharacters(): Resource<CharacterList> {
+    //    return remoteDataSource.getCharacters()
+    //}
 
 
 //    fun getCharacter(id: Int) = performGetOperation(

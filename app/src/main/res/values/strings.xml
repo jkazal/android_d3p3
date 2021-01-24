@@ -16,8 +16,8 @@
     <string name="participants">Participants</string>
     <string name="loading">Loading</string>
     <string name="date">Date</string>
-    <string name="date_start_full">Heure de début</string>
-    <string name="date_end_full">Heure de fin</string>
+    <string name="date_start_full">Start time</string>
+    <string name="date_end_full">End time</string>
     <string name="Select">Select</string>
     <string name="selected">Selected</string>
     <string name="next">Next step</string>
@@ -29,4 +29,5 @@
     <string name="finish">Add meeting</string>
     <string name="search">Search</string>
     <string name="view">View details</string>
+    <string name="refresh">Refresh</string>
 </resources>

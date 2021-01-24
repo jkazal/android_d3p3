@@ -27,6 +27,13 @@ class MeetingDetailViewModel @ViewModelInject constructor(
         }
     }
 
+    // Récupérer les details de l'evenement, puis la liste des participants
+    fun initMeetingDetails() {
+        launch {
+
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO
 }

@@ -46,15 +46,15 @@ class MeetingDetailFragment : Fragment(), MeetingDetailAdapter.CharacterItemList
 
     private fun setupRecyclerView() {
         adapter = MeetingDetailAdapter(this)
-        binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
-        binding.charactersRv.adapter = adapter
+        binding.meetingRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.meetingRv.adapter = adapter
     }
 
     private fun setupObservers() {
-        viewModel.characters.observe(viewLifecycleOwner, Observer {
+        viewModel.meeting.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.meetingProgressBar.visibility = View.GONE
                     if (!it.data?.results?.isEmpty()!!) {
                         var charArrayList : ArrayList<Character> = ArrayList<Character>()
                         charArrayList = ArrayList(it.data?.results)
@@ -65,7 +65,7 @@ class MeetingDetailFragment : Fragment(), MeetingDetailAdapter.CharacterItemList
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                 Resource.Status.LOADING ->
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.meetingProgressBar.visibility = View.VISIBLE
             }
         })
     }

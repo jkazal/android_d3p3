@@ -112,11 +112,11 @@ object AppModule : CoroutineScope {
     /* --------------REPOSITORIES------------------ */
 
 
-    @Singleton
-    @Provides
-    fun provideRepository(remoteDataSource: CharacterRemoteDataSource,
-                          localDataSource: CharacterDao) =
-        CharacterRepository(remoteDataSource, localDataSource)
+//    @Singleton
+//    @Provides
+//    fun provideRepository(remoteDataSource: CharacterRemoteDataSource,
+//                          localDataSource: CharacterDao) =
+//        CharacterRepository(remoteDataSource, localDataSource)
 
     @Singleton
     @Provides

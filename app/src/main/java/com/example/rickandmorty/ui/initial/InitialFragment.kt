@@ -18,11 +18,14 @@ import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.reservation.Reservation
+import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.databinding.InitialFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
+class InitialFragment constructor(
+    private val settingsRepository: SettingsRepository
+) : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     private var binding: InitialFragmentBinding by autoCleared()
     private val viewModel: InitialViewModel by viewModels()
@@ -48,7 +51,10 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
         // TODO: Init meetings
         // Init room number
         // Init room status (open?, closed?)
-
+        val roomId = settingsRepository.getCurrentRoomId(requireContext())
+        val dateValue = settingsRepository.getCurrentSelectedDate(requireContext())
+        viewModel.date = dateValue
+        viewModel.roomId = roomId
         viewModel.initUpcomingMeetings()
     }
 
