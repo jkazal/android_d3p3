@@ -1,15 +1,30 @@
 package com.example.rickandmorty.ui.addnewmeetingform
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
-import com.example.rickandmorty.data.entities.Character
-import com.example.rickandmorty.data.repository.CharacterRepository
-import com.example.rickandmorty.utils.Resource
+import java.util.*
+
 
 class AddNewMeetingFormStep1ViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     val topicName = MutableLiveData<String>("")
+    val selectedDay = MutableLiveData<String>("")
+    val selectedStartTime = MutableLiveData<String>("")
+    val selectedEndTime = MutableLiveData<String>("")
+
+    // Si ces méthodes ne fonctionnent pas, passer par le onClickListener
+    fun setMeetingDate() {
+
+    }
+
+    fun setMeetingStartTime() {
+
+    }
+
+    fun setMeetingEndTime() {
+
+    }
 }

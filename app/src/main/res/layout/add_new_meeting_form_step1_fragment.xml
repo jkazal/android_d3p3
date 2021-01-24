@@ -1,195 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.addnewmeetingform.AddNewMeetingFormStep1Fragment">
-
+    >
+    <!-- Layout nécessaire pour databinding -->
     <data>
-        <import android:type="android.view.View"/>
-        <variable android:name="viewModel" android:type="com.example.rickandmorty.ui.addnewmeetingform.AddNewMeetingFormStep1ViewModel"/>
-
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.rickandmorty.ui.addnewmeetingform.AddNewMeetingFormStep1ViewModel"/>
     </data>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_height="match_parent"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        tools:context=".ui.addnewmeetingform.AddNewMeetingFormStep1Fragment"
+        >
 
-        <EditText
-            android:id="@+id/AddNewForm1TopicInput"
+        <!-- visibility ="@{viewModel.isVisible?View.Gone : View.VISIBLE }" -->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:hint="@string/meeting_name"
-            android:text=""
-            />
+            android:padding="10dp">
 
-        <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textSize="30sp"/>
+            <EditText
+                android:id="@+id/AddNewForm1TopicInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:hint="@string/meeting_name"
+                android:text="@={viewModel.topicName}"
+                />
+
+            <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date"
+                        android:layout_gravity="left"
+                        android:textStyle="bold"
+                        android:textSize="30sp"/>
 
 
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/addNewForm1DayLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:text="@{viewModel.selectedDay}"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <Button
+                        android:id="@+id/addNewForm1DayBtn"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:text="@string/Select"
+                        android:onClick="@{() -> }"/>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
+            <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_start_full"
+                        android:layout_gravity="left"
+                        android:textStyle="bold"
+                        android:textSize="30sp"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/addNewForm1StartTimeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.selectedStartTime}"
+                        android:textSize="30sp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <Button
+                        android:id="@+id/addNewForm1StartTimeBtn"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:text="@string/Select"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_end_full"
+                        android:layout_gravity="left"
+                        android:textStyle="bold"
+                        android:textSize="30sp"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/addNewForm1EndTimeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.selectedEndTime}"
+                        android:textSize="30sp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.3"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <Button
+                        android:id="@+id/addNewForm1EndTimeBtn"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="30sp"
+                        android:text="@string/Select"/>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/addNewForm1Next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="@string/next"
                 android:gravity="center"
-                >
-                <TextView
-                    android:id="@+id/addNewForm1DayLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loading"
-                    android:textSize="30sp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp"
-                >
-                <Button
-                    android:id="@+id/addNewForm1DayBtn"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="30sp"
-                    android:text="@string/Select"/>
-            </LinearLayout>
+                android:layout_margin="30dp"
+                android:backgroundTint="@color/success"
+                android:onClick="@{() -> viewModel.testFunc()}"/>
         </LinearLayout>
-        <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date_start_full"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textSize="30sp"/>
 
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:gravity="center"
-                >
-                <TextView
-                    android:id="@+id/addNewForm1StartTimeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loading"
-                    android:textSize="30sp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp"
-                >
-                <Button
-                    android:id="@+id/addNewForm1StartTimeBtn"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="30sp"
-                    android:text="@string/Select"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date_end_full"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textSize="30sp"/>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:gravity="center"
-                >
-                <TextView
-                    android:id="@+id/addNewForm1EndTimeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loading"
-                    android:textSize="30sp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="0.3"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp"
-                >
-                <Button
-                    android:id="@+id/addNewForm1EndTimeBtn"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="30sp"
-                    android:text="@string/Select"/>
-            </LinearLayout>
-        </LinearLayout>
-        <Button
-            android:id="@+id/addNewForm1Next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="@string/next"
-            android:gravity="center"
-            android:layout_margin="30dp"
-            android:backgroundTint="@color/success"
-            android:onClick="@{() -> viewModel.testFunc()}"/>
-    </LinearLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

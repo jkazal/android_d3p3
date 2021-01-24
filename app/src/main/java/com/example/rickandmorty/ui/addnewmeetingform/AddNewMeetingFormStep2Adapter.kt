@@ -8,54 +8,51 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.rickandmorty.data.entities.Character
+import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.databinding.ItemCharacterBinding
+import com.example.rickandmorty.databinding.ItemSelectableparticipantBinding
 
-class AddNewMeetingFormStep2Adapter(private val listener: CharacterItemListener) : RecyclerView.Adapter<CharacterViewHolder>() {
+class AddNewMeetingFormStep2Adapter(private val listener: UserItemListener) : RecyclerView.Adapter<UserViewHolder>() {
 
-    interface CharacterItemListener {
-        fun onClickedCharacter(characterId: Int)
+    interface UserItemListener {
+        fun onSelectUser(userId: String)
     }
 
-    private val items = ArrayList<Character>()
+    private val items = ArrayList<User>()
 
-    fun setItems(items: ArrayList<Character>) {
+    fun setItems(items: ArrayList<User>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val binding: ItemCharacterBinding = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CharacterViewHolder(binding, listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val binding: ItemSelectableparticipantBinding = ItemSelectableparticipantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return UserViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) = holder.bind(items[position])
 }
 
-class CharacterViewHolder(private val itemBinding: ItemCharacterBinding, private val listener: AddNewMeetingFormStep2Adapter.CharacterItemListener) : RecyclerView.ViewHolder(itemBinding.root),
+class UserViewHolder(private val itemBinding: ItemSelectableparticipantBinding, private val listener: AddNewMeetingFormStep2Adapter.UserItemListener) : RecyclerView.ViewHolder(itemBinding.root),
     View.OnClickListener {
 
-    private lateinit var character: Character
+    private lateinit var user: User
 
     init {
         itemBinding.root.setOnClickListener(this)
     }
 
     @SuppressLint("SetTextI18n")
-    fun bind(item: Character) {
-        this.character = item
-        itemBinding.name.text = item.name
-        itemBinding.speciesAndStatus.text = """${item.species} - ${item.status}"""
-        Glide.with(itemBinding.root)
-            .load(item.image)
-            .transform(CircleCrop())
-            .into(itemBinding.image)
+    fun bind(item: User) {
+        this.user = item
+        itemBinding.selectableParticipantName.text = item.email
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedCharacter(character.id)
+        listener.onSelectUser(user.id)
     }
 }
 

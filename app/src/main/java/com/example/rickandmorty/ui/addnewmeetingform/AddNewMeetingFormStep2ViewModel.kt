@@ -6,21 +6,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.entities.CharacterList
+import com.example.rickandmorty.data.entities.user.UserList
 import com.example.rickandmorty.data.repository.CharacterRepository
+import com.example.rickandmorty.data.repository.UserRepository
 import com.example.rickandmorty.utils.Resource
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class AddNewMeetingFormStep2ViewModel @ViewModelInject constructor(
-    private val repository: CharacterRepository
+    private val repository: UserRepository
 ) : ViewModel(), CoroutineScope {
 
-    val characters : MutableLiveData<Resource<CharacterList>> = MutableLiveData<Resource<CharacterList>>()
+    val users : MutableLiveData<Resource<UserList>> = MutableLiveData<Resource<UserList>>()
 
+    val topicName = MutableLiveData<String>("")
+    val selectedDay = MutableLiveData<String>("")
+    val selectedStartTime = MutableLiveData<String>("")
+    val selectedEndTime = MutableLiveData<String>("")
+
+    val selectedUsers = MutableLiveData<ArrayList<String>>()
+    val selectedUsersArray = ArrayList<String>()
+
+    // TODO: Remplir les vals topicName/selectedDay/etc. par les arguments de navigation (bundle)
     fun initAddNewMeetingFormStep2() {
         launch {
-            characters.postValue(repository.getCharacters())
-            Log.d("DEBUG", characters.value.toString())
+            users.postValue(repository.getUsers())
+            Log.d("DEBUG", users.value.toString())
         }
     }
 

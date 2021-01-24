@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,11 +16,12 @@ import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep2FragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
-import com.example.rickandmorty.data.entities.Character
+import com.example.rickandmorty.data.entities.user.User
+import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter.CharacterItemListener {
+class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter.UserItemListener {
 
     private var binding: AddNewMeetingFormStep2FragmentBinding by autoCleared()
     private val viewModel: AddNewMeetingFormStep2ViewModel by viewModels()
@@ -29,7 +31,9 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = AddNewMeetingFormStep2FragmentBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate<AddNewMeetingFormStep2FragmentBinding>(inflater,R.layout.add_new_meeting_form_step2_fragment,container,false)
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        binding.viewModel = this.viewModel
         return binding.root
     }
 
@@ -46,34 +50,41 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
 
     private fun setupRecyclerView() {
         adapter = AddNewMeetingFormStep2Adapter(this)
-        binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
-        binding.charactersRv.adapter = adapter
+        binding.addnewStep2Rv.layoutManager = LinearLayoutManager(requireContext())
+        binding.addnewStep2Rv.adapter = adapter
     }
 
     private fun setupObservers() {
-        viewModel.characters.observe(viewLifecycleOwner, Observer {
+        viewModel.users.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.addnewStep2ProgressBar.visibility = View.GONE
                     if (!it.data?.results?.isEmpty()!!) {
-                        var charArrayList : ArrayList<Character> = ArrayList<Character>()
-                        charArrayList = ArrayList(it.data?.results)
-                        adapter.setItems(charArrayList)
+                        var userArrayList : ArrayList<User> = ArrayList<User>()
+                        userArrayList = ArrayList(it.data?.results)
+                        adapter.setItems(userArrayList)
                     }
                 }
                 Resource.Status.ERROR ->
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                 Resource.Status.LOADING ->
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.addnewStep2Rv.visibility = View.VISIBLE
             }
         })
     }
 
-    override fun onClickedCharacter(characterId: Int) {
-        findNavController().navigate(
-            R.id.action_charactersFragment_to_characterDetailFragment,
-            bundleOf("id" to characterId)
-        )
+    override fun onSelectUser(id: String) {
+        // Mettre l'id dans le MLD
+        // TODO Gérer le fait qu'il soit déjà sélectionné ou non
+        viewModel.selectedUsersArray.add(id)
+        viewModel.selectedUsers.postValue(viewModel.selectedUsersArray)
+
     }
+//    override fun onClickedCharacter(characterId: Int) {
+//        findNavController().navigate(
+//            R.id.action_charactersFragment_to_characterDetailFragment,
+//            bundleOf("id" to characterId)
+//        )
+//    }
 }

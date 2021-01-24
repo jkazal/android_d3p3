@@ -9,6 +9,8 @@ import retrofit2.http.*
 
 interface UserService {
     @GET("users/search?searchValue={input}")
-    suspend fun getUserSuggestions(@Path("input") inputText: String)
-    : Response<UserList>
+    suspend fun getUserSuggestions(@Path("input") inputText: String) : Response<UserList>
+
+    @GET("users")
+    suspend fun getAllUsers() : Response<UserList>
 }
