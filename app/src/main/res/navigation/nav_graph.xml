@@ -99,7 +99,6 @@
             android:name="date"
             app:argType="string" />
         <argument
-            android:name="userIdArray"
-            app:argType="string[]" />
+            android:name="userIdArray" />
     </fragment>
 </navigation>

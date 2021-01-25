@@ -54,6 +54,11 @@ class InitialFragment constructor(
         viewModel.date = dateValue
         viewModel.roomId = roomId
 
+        binding.refreshStatusBtn.setOnClickListener {
+            viewModel.initUpcomingMeetings()
+            viewModel.getCurrentMeetingData()
+        }
+
         loadContents()
     }
 

@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.addnewmeetingform.AddNewMeetingFormStep3Fragment">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_height="match_parent"
+    >
+    <!-- Layout nécessaire pour databinding -->
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.rickandmorty.ui.addnewmeetingform.AddNewMeetingFormStep3ViewModel"/>
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:padding="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="@string/finish_add_desc"
-            android:gravity="center" />
-        <EditText
-            android:id="@+id/addNewForm3LoginInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:hint="@string/your_login"/>
-        <EditText
-            android:id="@+id/addNewForm3PasswordInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:inputType="textPassword"
-            android:hint="@string/your_password"/>
+        android:layout_height="match_parent"
+        tools:context=".ui.addnewmeetingform.AddNewMeetingFormStep3Fragment">
 
-        <Button
-            android:id="@+id/addNewForm3Validate"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="@string/finish"
-            android:gravity="center"
-            android:layout_margin="30dp"
-            android:backgroundTint="@color/success"/>
-    </LinearLayout>
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="@string/finish_add_desc"
+                android:gravity="center" />
+            <EditText
+                android:id="@+id/addNewForm3LoginInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:hint="@string/your_login"/>
+            <EditText
+                android:id="@+id/addNewForm3PasswordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:inputType="textPassword"
+                android:hint="@string/your_password"/>
 
-</FrameLayout>
+            <Button
+                android:id="@+id/addNewForm3Validate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="@string/finish"
+                android:gravity="center"
+                android:layout_margin="30dp"
+                android:backgroundTint="@color/success"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

@@ -22,14 +22,14 @@ interface ReservationService {
     @POST("/reservations/add")
     @FormUrlEncoded
     suspend fun createReservation (
-        @Field("dateDebut") dateDebut: String,
-        @Field("heureDebut") heureDebut: String,
-        @Field("dateFin") dateFin: String,
-        @Field("heureFin") heureFin: String,
-        @Field("organizerUser") organizerUser: String,
-        @Field("organizerPassword") organizerPassword: String,
-        @Field("spaceId") spaceId: String,
-        @Field("participantIdList") participantIdList: Array<String>
+        @Field("startTime") startTime: String,
+        @Field("endTime") endTime: String,
+        @Field("date") date : String,
+        @Field("topicName") topic : String,
+        @Field("participants") participants: ArrayList<String>,
+        @Field("roomId") roomId: String,
+        @Field("organizerLogin") organizerLogin: String,
+        @Field("organizerPassword") organizerPassword : String
     ): Response<ReservationAddResult>
 
     @GET("reservations/{reservationId}")

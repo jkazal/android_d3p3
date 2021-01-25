@@ -20,22 +20,22 @@ class ReservationRemoteDataSource @Inject constructor(
     suspend fun getCurrentMeetingForRoom ( roomId: String ) = getResult { reservationService.getCurrentMeetingForRoom(roomId) }
 
     suspend fun createReservation (
-        dDebut: String,
-        hDebut: String,
-        dFin: String,
-        hFin: String,
-        orgLogin: String,
-        orgPassword: String,
-        spaceId: String,
-        participantIdList: Array<String>
+        sTime: String,
+        eTime: String,
+        date: String,
+        tName: String,
+        userIdArray: ArrayList<String>,
+        roomId: String,
+        login: String,
+        password: String
     ) = getResult { reservationService.createReservation(
-        dDebut,
-        hDebut,
-        dFin,
-        hFin,
-        orgLogin,
-        orgPassword,
-        spaceId,
-        participantIdList
+        sTime,
+        eTime,
+        date,
+        tName,
+        userIdArray,
+        roomId,
+        login,
+        password
     ) }
 }

@@ -46,9 +46,10 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
                 "topicName" to viewModel.topicName,
                 "date" to viewModel.selectedDay,
                 "startTime" to viewModel.selectedStartTime,
-                "endTime" to viewModel.selectedEndTime
+                "endTime" to viewModel.selectedEndTime,
+                "userIdArray" to viewModel.selectedUsers
             )
-            findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment)
+            findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment, bundle)
         }
     }
 

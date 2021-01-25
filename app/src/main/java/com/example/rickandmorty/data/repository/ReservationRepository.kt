@@ -3,6 +3,7 @@ package com.example.rickandmorty.data.repository
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.reservation.Reservation
+import com.example.rickandmorty.data.entities.reservation.ReservationAddResult
 import com.example.rickandmorty.data.entities.reservation.ReservationList
 import com.example.rickandmorty.data.local.CharacterDao
 import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
@@ -35,6 +36,12 @@ class ReservationRepository @Inject constructor(
 
     suspend fun getCurrentMeetingForRoom(roomId: String ) : Resource<Reservation> {
         return remoteDataSource.getCurrentMeetingForRoom(roomId)
+    }
+
+    suspend fun createReservation(startTime: String, endTime: String, date: String, topicName: String, userIdArray: ArrayList<String>, roomId: String, userLogin: String, userPassword: String) : Resource<ReservationAddResult> {
+        return remoteDataSource.createReservation(
+            startTime, endTime, date, topicName, userIdArray, roomId, userLogin, userPassword
+        )
     }
 //    fun getCharacter(id: Int) = performGetOperation(
 //        databaseQuery = { localDataSource.getCharacter(id) },
