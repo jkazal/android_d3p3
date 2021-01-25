@@ -35,4 +35,7 @@ interface ReservationService {
     @GET("reservations/{reservationId}")
     suspend fun getReservationById ( @Field("reservationId") reservationId: String) : Response<Reservation>
 
+    // Si il n'y a pas de meeting pour la salle donnée, on affiche rien
+    @GET("reservations/{roomId}/current")
+    suspend fun getCurrentMeetingForRoom ( @Field("roomId") roomId: String) : Response<Reservation>
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rickandmorty.data.entities.SettingsEntity
+import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.entities.reservation.ReservationList
 import com.example.rickandmorty.data.local.SettingsDao
 import com.example.rickandmorty.data.repository.ReservationRepository
@@ -28,8 +29,10 @@ class InitialViewModel @ViewModelInject constructor(
     val upcomingMeetings : MutableLiveData<Resource<ReservationList>> = MutableLiveData<Resource<ReservationList>>()
     var currentTime: String =
         SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-    val date: String = ""
-    val roomId: String = ""
+    var date: String = ""
+    var roomId: String = ""
+
+    val currentMeetingMLD : MutableLiveData<Resource<Reservation>> = MutableLiveData<Resource<Reservation>>()
     fun initUpcomingMeetings() {
         getUpcomingMeetings()
     }
@@ -71,6 +74,12 @@ class InitialViewModel @ViewModelInject constructor(
             // si on arrive pas à lire de la base de manière sync :
             // val settingsEntity: SettingsEntity = settingsDao.getCurrentSettings() // (avec getCurrentSettings ne renvoyant pas un livedata)
             // upcomingMeetings.postValue(settingsEntity.roomId, settingsEntity.date)
+        }
+    }
+
+    fun getCurrentMeetingData() {
+        launch {
+            currentMeetingMLD.postValue(reservationRepository.getCurrentMeetingForRoom(roomId) )
         }
     }
     override val coroutineContext: CoroutineContext

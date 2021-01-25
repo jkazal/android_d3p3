@@ -40,10 +40,24 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
     override fun onStart() {
         super.onStart()
         viewModel.initAddNewMeetingFormStep2()
+
+        binding.addNewForm2Next.setOnClickListener {
+            val bundle = bundleOf(
+                "topicName" to viewModel.topicName,
+                "date" to viewModel.selectedDay,
+                "startTime" to viewModel.selectedStartTime,
+                "endTime" to viewModel.selectedEndTime
+            )
+            findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.getString("date")?.let { viewModel.selectedDay = it }
+        arguments?.getString("startTime")?.let { viewModel.selectedStartTime = it }
+        arguments?.getString("endTime")?.let { viewModel.selectedEndTime = it }
+        arguments?.getString("topicName")?.let { viewModel.topicName = it }
         setupRecyclerView()
         setupObservers()
     }
@@ -77,14 +91,10 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
     override fun onSelectUser(id: String) {
         // Mettre l'id dans le MLD
         // TODO Gérer le fait qu'il soit déjà sélectionné ou non
-        viewModel.selectedUsersArray.add(id)
-        viewModel.selectedUsers.postValue(viewModel.selectedUsersArray)
+        if ( !viewModel.selectedUsersArray.contains(id) ) {
+            viewModel.selectedUsersArray.add(id)
+            viewModel.selectedUsers.postValue(viewModel.selectedUsersArray)
+        }
 
     }
-//    override fun onClickedCharacter(characterId: Int) {
-//        findNavController().navigate(
-//            R.id.action_charactersFragment_to_characterDetailFragment,
-//            bundleOf("id" to characterId)
-//        )
-//    }
 }

@@ -44,18 +44,21 @@ class InitialFragment constructor(
     override fun onStart() {
         super.onStart()
         mHandler = Handler()
-        loadContents()
-    }
 
-    fun loadContents() {
-        // TODO: Init meetings
-        // Init room number
-        // Init room status (open?, closed?)
         val roomId = settingsRepository.getCurrentRoomId(requireContext())
         val dateValue = settingsRepository.getCurrentSelectedDate(requireContext())
         viewModel.date = dateValue
         viewModel.roomId = roomId
+
+        loadContents()
+    }
+
+    fun loadContents() {
+        // Aller chercher les meetings
         viewModel.initUpcomingMeetings()
+
+        // Aller chercher le statut (est-ce qu'il y a un meeting actuel)
+        viewModel.getCurrentMeetingData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

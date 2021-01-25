@@ -17,17 +17,19 @@ class AddNewMeetingFormStep2ViewModel @ViewModelInject constructor(
     private val repository: UserRepository
 ) : ViewModel(), CoroutineScope {
 
-    val users : MutableLiveData<Resource<UserList>> = MutableLiveData<Resource<UserList>>()
+    var users : MutableLiveData<Resource<UserList>> = MutableLiveData<Resource<UserList>>()
 
-    val topicName = MutableLiveData<String>("")
-    val selectedDay = MutableLiveData<String>("")
-    val selectedStartTime = MutableLiveData<String>("")
-    val selectedEndTime = MutableLiveData<String>("")
+    var topicName : String = ""
+    var selectedDay : String = ""
+    var selectedStartTime : String = ""
+    var selectedEndTime : String = ""
 
-    val selectedUsers = MutableLiveData<ArrayList<String>>()
-    val selectedUsersArray = ArrayList<String>()
+    var selectedUsers = MutableLiveData<ArrayList<String>>()
+    var selectedUsersArray = ArrayList<String>()
 
     // TODO: Remplir les vals topicName/selectedDay/etc. par les arguments de navigation (bundle)
+    // ceci a été fait da,s le fragment
+
     fun initAddNewMeetingFormStep2() {
         launch {
             users.postValue(repository.getUsers())

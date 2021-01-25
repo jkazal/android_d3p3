@@ -33,7 +33,9 @@ class ReservationRepository @Inject constructor(
         return remoteDataSource.getUpcomingMeetingsForDate(roomId, date)
     }
 
-
+    suspend fun getCurrentMeetingForRoom(roomId: String ) : Resource<Reservation> {
+        return remoteDataSource.getCurrentMeetingForRoom(roomId)
+    }
 //    fun getCharacter(id: Int) = performGetOperation(
 //        databaseQuery = { localDataSource.getCharacter(id) },
 //        networkCall = { remoteDataSource.getCharacter(id) },
