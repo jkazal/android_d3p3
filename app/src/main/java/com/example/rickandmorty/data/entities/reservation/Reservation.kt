@@ -13,8 +13,9 @@ data class Reservation(
     val label: String,
     val dateDebut: String,
     val dateFin: String,
+    val date: String,
     val organizer: User,
     val space: D3P3Space,
-    val participants: List<User>
-
+    val participants: List<User>,
+    val topicName: String
 )

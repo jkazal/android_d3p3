@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.initial.InitialFragment">
-
-    <LinearLayout
-        android:orientation="vertical"
+    >
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.rickandmorty.ui.initial.InitialViewModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
-        <LinearLayout
-            android:layout_weight="0.5"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-                <Button
-                    android:id="@+id/setDateToTodayBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/set_date_to_today" />
-                <Button
-                    android:id="@+id/selectDateBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/select_date"
-                    />
-                <Button
-                    android:id="@+id/newReservationBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/place_new_reservation"
-                    android:backgroundTint="@color/success"/>
-                <Button
-                    android:id="@+id/refreshStatusBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/refresh"
-                    android:backgroundTint="@color/info"/>
+        tools:context=".ui.initial.InitialFragment">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/setDateToTodayBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/set_date_to_today" />
+                    <Button
+                        android:id="@+id/selectDateBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/select_date"
+                        />
+                    <Button
+                        android:id="@+id/newReservationBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/place_new_reservation"
+                        android:backgroundTint="@color/success"/>
+                    <Button
+                        android:id="@+id/refreshStatusBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/refresh"
+                        android:backgroundTint="@color/info"/>
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/roomNumberHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:text="@={viewModel.roomNumberMLD}"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/openStatusHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="80sp"
+                    android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.closedLabelMLD : viewModel.openLabelMLD }"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"/>
             </LinearLayout>
-            <TextView
-                android:id="@+id/roomNumberHolder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="@string/init_room"
-                android:background="@color/colorAccent"
-                android:gravity="center"/>
-            <TextView
-                android:id="@+id/openStatusHolder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="80sp"
-                android:text="@string/init_room"
-                android:background="@color/colorAccent"
-                android:gravity="center"/>
-        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="@{viewModel.currentMeetingMLD.data.id==0? View.GONE : View.VISIBLE }"
                 >
 
                 <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
@@ -98,7 +106,8 @@
                             android:id="@+id/initialOrganizerOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/loading" />
+                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.organizer.email : viewModel.currentMeetingMLD.data.id }"
+                            />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -128,7 +137,8 @@
                             android:id="@+id/initialMeetingNameOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/loading" />
+                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.topicName : viewModel.currentMeetingMLD.data.id }"
+                             />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
@@ -157,7 +167,8 @@
                             android:id="@+id/initialTimeStartOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/loading" />
+                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.dateDebut : viewModel.currentMeetingMLD.data.id }"
+                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -187,70 +198,72 @@
                             android:id="@+id/initialTimeEndOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/loading" />
+                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.dateFin : viewModel.currentMeetingMLD.data.id }"
+                            />
                     </LinearLayout>
                 </LinearLayout>
-      </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:background="@drawable/layout_border_basic"
-            >
-
+            </LinearLayout>
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:background="@drawable/layout_border_basic"
+                >
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    >
-
-
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:layout_width="409dp"
-                        android:layout_height="wrap_content"
-                        tools:layout_editor_absoluteX="1dp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/initial_view_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        >
 
 
-                    <ProgressBar
-                        android:id="@+id/initial_progress_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="true"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="409dp"
+                            android:layout_height="wrap_content"
+                            tools:layout_editor_absoluteX="1dp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/initial_view_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <ProgressBar
+                            android:id="@+id/initial_progress_bar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
-    </LinearLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

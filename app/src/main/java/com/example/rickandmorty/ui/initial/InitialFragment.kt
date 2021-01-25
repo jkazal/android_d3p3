@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.repository.SettingsRepository
+import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
 import com.example.rickandmorty.databinding.InitialFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +39,9 @@ class InitialFragment constructor(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = InitialFragmentBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate<InitialFragmentBinding>(inflater,R.layout.initial_fragment,container,false)
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        binding.viewModel = this.viewModel
         return binding.root
     }
 
