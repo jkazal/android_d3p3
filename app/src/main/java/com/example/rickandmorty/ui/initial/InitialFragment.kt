@@ -103,9 +103,9 @@ class InitialFragment constructor(
     }
 
     override fun onClickedMeetingRecycler(reservationId: String) {
-        findNavController().navigate(
-            R.id.action_initialFragment_to_meetingDetailFragment3,
-            bundleOf("chosenMeetingId" to reservationId)
-        )
+        //findNavController().navigate(
+        //    R.id.action_initialFragment_to_meetingDetailFragment3,
+        //    bundleOf("chosenMeetingId" to reservationId)
+        //)
     }
 }

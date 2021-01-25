@@ -26,21 +26,8 @@
         android:label="initial_fragment"
         tools:layout="@layout/initial_fragment">
         <action
-            android:id="@+id/action_initialFragment_to_meetingDetailFragment3"
-            app:destination="@id/meetingDetailFragment" />
-        <action
             android:id="@+id/action_initialFragment_to_addNewMeetingFormStep1Fragment"
             app:destination="@id/addNewMeetingFormStep1Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/meetingDetailFragment"
-        android:name="com.example.rickandmorty.ui.meetingdetail.MeetingDetailFragment"
-        android:label="meeting_detail_fragment"
-        tools:layout="@layout/meeting_detail_fragment">
-        <argument
-            android:name="chosenMeetingId"
-            android:defaultValue="NO_LINK"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
