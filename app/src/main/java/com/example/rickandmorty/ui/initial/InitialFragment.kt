@@ -2,6 +2,7 @@ package com.example.rickandmorty.ui.initial
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +23,12 @@ import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
 import com.example.rickandmorty.databinding.InitialFragmentBinding
+import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 @AndroidEntryPoint
-class InitialFragment constructor(
-    private val settingsRepository: SettingsRepository
-) : Fragment(), InitialSpaceAdapter.InitialItemListener {
+class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     private var binding: InitialFragmentBinding by autoCleared()
     private val viewModel: InitialViewModel by viewModels()
@@ -49,14 +50,24 @@ class InitialFragment constructor(
         super.onStart()
         mHandler = Handler()
 
-        val roomId = settingsRepository.getCurrentRoomId(requireContext())
-        val dateValue = settingsRepository.getCurrentSelectedDate(requireContext())
-        viewModel.date = dateValue
+        val file = File(requireContext().filesDir, "config.json")
+        val content: String = String(file.readBytes())
+        val jso = JsonParser().parse(content).asJsonObject
+        val roomId = jso.get("roomId").asString
+        val date = jso.get("date").asString
+        Log.d("Johann", roomId)
+        Log.d("Johann", date)
+        // val dateValue = settingsRepository.getCurrentSelectedDate(requireContext())
+        viewModel.date = date
         viewModel.roomId = roomId
 
         binding.refreshStatusBtn.setOnClickListener {
             viewModel.initUpcomingMeetings()
             viewModel.getCurrentMeetingData()
+        }
+
+        binding.newReservationBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_initialFragment_to_addNewMeetingFormStep1Fragment)
         }
 
         loadContents()

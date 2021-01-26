@@ -1,5 +1,6 @@
 package com.example.rickandmorty.ui.initial
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,6 +38,7 @@ class InitialViewModel @ViewModelInject constructor(
 
     val currentMeetingMLD : MutableLiveData<Resource<Reservation>> = MutableLiveData<Resource<Reservation>>()
     fun initUpcomingMeetings() {
+
         getUpcomingMeetings()
     }
 
@@ -75,6 +77,7 @@ class InitialViewModel @ViewModelInject constructor(
             roomNumberMLD.postValue(roomId)
             openLabelMLD.postValue("Open")
             closedLabelMLD.postValue("Closed")
+            Log.d("Johann", "getUpcomingMeetingData")
             upcomingMeetings.postValue(reservationRepository.getUpcomingMeetingsForDate(roomId, date))
 
             // si on arrive pas à lire de la base de manière sync :
@@ -85,6 +88,7 @@ class InitialViewModel @ViewModelInject constructor(
 
     fun getCurrentMeetingData() {
         launch {
+            Log.d("Johann", "getCurrentData")
             currentMeetingMLD.postValue(reservationRepository.getCurrentMeetingForRoom(roomId) )
             val reservationId = currentMeetingMLD.value?.data?.id
 

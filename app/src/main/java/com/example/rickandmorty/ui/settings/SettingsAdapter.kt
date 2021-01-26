@@ -1,6 +1,7 @@
 package com.example.rickandmorty.ui.settings
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +52,8 @@ class SettingViewHolder(private val itemBinding: ItemRoomBinding, private val li
         itemBinding.selectableParticipantName.text = item.name
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
+        Log.d("Johann", "click")
         listener.onClickedRoom(d3P3Space.id)
     }
 }

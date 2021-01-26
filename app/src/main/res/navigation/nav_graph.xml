@@ -73,10 +73,6 @@
         android:name="com.example.rickandmorty.ui.addnewmeetingform.AddNewMeetingFormStep3Fragment"
         android:label="add_new_meeting_form_step3_fragment"
         tools:layout="@layout/add_new_meeting_form_step3_fragment">
-        <action
-            android:id="@+id/action_addNewMeetingFormStep3Fragment_to_initialFragment"
-            app:destination="@id/initialFragment"
-            app:launchSingleTop="true" />
         <argument
             android:name="startTime"
             app:argType="string" />

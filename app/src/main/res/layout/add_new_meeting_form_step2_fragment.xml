@@ -29,7 +29,8 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:layout_weight="0.01">
+                android:layout_weight="0.01"
+                android:visibility="gone">
                 <LinearLayout
                     android:layout_weight="0.75"
                     android:layout_height="match_parent"

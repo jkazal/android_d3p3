@@ -80,7 +80,8 @@ class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
     override fun onClickedRoom(roomId: String) {
         // Write roomId to json file
         val filename = "config.json"
-        val curDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        Log.d("Johann","Clicked Room in Rv")
+        val curDate = SimpleDateFormat("YYYY-mm-dd", Locale.getDefault()).format(Date())
         val jObject = JsonObject()
         jObject.addProperty("roomId", roomId)
         jObject.addProperty("date", curDate)
@@ -94,7 +95,7 @@ class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
 
             findNavController().navigate(R.id.action_settingsFragment_to_initialFragment)
         } catch (e: Exception) {
-            Log.d("ERROR", e.stackTrace.toString())
+            Log.d("ERROR", e.message)
         }
     }
 }

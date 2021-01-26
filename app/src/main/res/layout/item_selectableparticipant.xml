@@ -34,20 +34,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <CheckBox
-                android:id="@+id/selectableParticipantCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"/>
-
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

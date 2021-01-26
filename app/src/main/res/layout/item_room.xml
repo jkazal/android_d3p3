@@ -42,12 +42,6 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
-            <Button
-                android:id="@+id/roomSelectorBtn"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="Select this one">
-            </Button>
 
         </LinearLayout>
     </LinearLayout>
