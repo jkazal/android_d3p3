@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.reservation.ReservationAddResult
-import com.example.rickandmorty.data.repository.CharacterRepository
 import com.example.rickandmorty.data.repository.ReservationRepository
 import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.utils.Resource

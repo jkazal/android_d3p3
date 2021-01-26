@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.user.UserList
-import com.example.rickandmorty.data.repository.CharacterRepository
 import com.example.rickandmorty.data.repository.UserRepository
 import com.example.rickandmorty.utils.Resource
 import kotlinx.coroutines.*

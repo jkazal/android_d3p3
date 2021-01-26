@@ -8,7 +8,6 @@ import com.example.rickandmorty.R
 import com.example.rickandmorty.data.entities.SettingsEntity
 import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.entities.reservation.ReservationList
-import com.example.rickandmorty.data.local.SettingsDao
 import com.example.rickandmorty.data.repository.ReservationRepository
 import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.utils.Resource
@@ -23,7 +22,6 @@ import kotlin.coroutines.CoroutineContext
 
 class InitialViewModel @ViewModelInject constructor(
     private val reservationRepository: ReservationRepository,
-    private val settingsDao: SettingsDao,
     private val settingsRepository: SettingsRepository
 ) : ViewModel(), CoroutineScope {
 

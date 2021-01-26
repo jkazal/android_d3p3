@@ -3,8 +3,6 @@ package com.example.rickandmorty.data.repository
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.spaces.D3P3SpaceList
-import com.example.rickandmorty.data.local.CharacterDao
-import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
 import com.example.rickandmorty.data.remote.d3p3space.D3P3SpaceRemoteDataSource
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.performGetOperation

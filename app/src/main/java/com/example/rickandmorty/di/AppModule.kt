@@ -1,20 +1,15 @@
 package com.example.rickandmorty.di
 
 import android.content.Context
-import com.example.rickandmorty.data.local.AppDatabase
-import com.example.rickandmorty.data.local.CharacterDao
-import com.example.rickandmorty.data.local.SettingsDao
-import com.example.rickandmorty.data.remote.CharacterRemoteDataSource
-import com.example.rickandmorty.data.remote.CharacterService
+import com.example.rickandmorty.data.remote.d3p3space.D3P3SpaceRemoteDataSource
+import com.example.rickandmorty.data.remote.d3p3space.D3P3SpaceService
 import com.example.rickandmorty.data.remote.reservations.ReservationRemoteDataSource
 import com.example.rickandmorty.data.remote.reservations.ReservationService
 import com.example.rickandmorty.data.remote.spaces.SpaceRemoteDataSource
 import com.example.rickandmorty.data.remote.spaces.SpaceService
 import com.example.rickandmorty.data.remote.users.UserRemoteDataSource
 import com.example.rickandmorty.data.remote.users.UserService
-import com.example.rickandmorty.data.repository.CharacterRepository
-import com.example.rickandmorty.data.repository.ReservationRepository
-import com.example.rickandmorty.data.repository.SettingsRepository
+import com.example.rickandmorty.data.repository.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -73,26 +68,25 @@ object AppModule : CoroutineScope {
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
 
+
+    /**
+     * D3P3SpaceService
+     */
     @Provides
-    fun provideCharacterService(retrofit: Retrofit): CharacterService = retrofit.create(CharacterService::class.java)
+    fun provided3P3SpaceService(retrofit: Retrofit): D3P3SpaceService = retrofit.create(D3P3SpaceService::class.java)
 
     @Singleton
     @Provides
-    fun provideCharacterRemoteDataSource(characterService: CharacterService) = CharacterRemoteDataSource(characterService)
-
-    @Provides
-    fun provideReservationService(retrofit: Retrofit): ReservationService = retrofit.create(ReservationService::class.java)
+    fun provided3P3SpaceRemoteDataSource(d3P3SpaceService: D3P3SpaceService) = D3P3SpaceRemoteDataSource(d3P3SpaceService)
 
     @Singleton
     @Provides
-    fun provideReservationRemoteDataSource(reservationService: ReservationService) = ReservationRemoteDataSource(reservationService)
+    fun provided3P3SpaceRepository(d3P3SpaceRemoteDataSource: D3P3SpaceRemoteDataSource) = D3P3SpaceRepository(d3P3SpaceRemoteDataSource)
 
-    @Provides
-    fun provideUserService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
 
-    @Singleton
-    @Provides
-    fun provideUserRemoteDataSource(userService: UserService) = UserRemoteDataSource(userService)
+    /**
+     * SPACE
+     */
 
     @Provides
     fun provideSpaceService(retrofit: Retrofit): SpaceService = retrofit.create(SpaceService::class.java)
@@ -101,30 +95,44 @@ object AppModule : CoroutineScope {
     @Provides
     fun provideSpaceRemoteDataSource(spaceService: SpaceService) = SpaceRemoteDataSource(spaceService)
 
+    /**
+     * RESERVATION
+     */
+
+    @Provides
+    fun provideReservationService(retrofit: Retrofit): ReservationService = retrofit.create(ReservationService::class.java)
+
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
-
-    @Singleton
-    @Provides
-    fun provideSettingsDao(db: AppDatabase) = db.settingsDao()
-
-    /* --------------REPOSITORIES------------------ */
-
-
-//    @Singleton
-//    @Provides
-//    fun provideRepository(remoteDataSource: CharacterRemoteDataSource,
-//                          localDataSource: CharacterDao) =
-//        CharacterRepository(remoteDataSource, localDataSource)
+    fun provideReservationRemoteDataSource(reservationService: ReservationService) = ReservationRemoteDataSource(reservationService)
 
     @Singleton
     @Provides
     fun provideReservationRepository(reservationRemoteDataSource: ReservationRemoteDataSource) = ReservationRepository(reservationRemoteDataSource)
 
+    /**
+     * USER
+     */
+
+    @Provides
+    fun provideUserService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
+
     @Singleton
     @Provides
-    fun provideSettingsRepository(localDataSource: SettingsDao) = SettingsRepository(localDataSource)
+    fun provideUserRemoteDataSource(userService: UserService) = UserRemoteDataSource(userService)
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(userRemoteDataSource: UserRemoteDataSource) = UserRepository(userRemoteDataSource)
+
+
+    /**
+     * SETTINGS
+     */
+
+    @Singleton
+    @Provides
+    fun provideSettingsRepository() = SettingsRepository()
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO

@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="80sp"
-                    android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.closedLabelMLD : viewModel.openLabelMLD }"
+                    android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.closedLabelMLD : viewModel.openLabelMLD }'
                     android:background="@color/colorAccent"
                     android:gravity="center"/>
             </LinearLayout>
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="@{viewModel.currentMeetingMLD.data.id==0? View.GONE : View.VISIBLE }"
+                android:visibility='@{viewModel.currentMeetingMLD.data.id.equals("0")? View.GONE : View.VISIBLE }'
                 >
 
                 <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
@@ -106,7 +106,7 @@
                             android:id="@+id/initialOrganizerOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.organizer.email : viewModel.currentMeetingMLD.data.id }"
+                            android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.currentMeetingMLD.data.organizer.email : viewModel.currentMeetingMLD.data.id }'
                             />
 
                     </LinearLayout>
@@ -137,7 +137,7 @@
                             android:id="@+id/initialMeetingNameOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.topicName : viewModel.currentMeetingMLD.data.id }"
+                            android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.currentMeetingMLD.data.topicName : viewModel.currentMeetingMLD.data.id }'
                              />
                     </LinearLayout>
                 </LinearLayout>
@@ -167,7 +167,7 @@
                             android:id="@+id/initialTimeStartOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.dateDebut : viewModel.currentMeetingMLD.data.id }"
+                            android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.currentMeetingMLD.data.dateDebut : viewModel.currentMeetingMLD.data.id }'
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -198,7 +198,7 @@
                             android:id="@+id/initialTimeEndOccupiedLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.currentMeetingMLD.data.id==0? viewModel.currentMeetingMLD.data.dateFin : viewModel.currentMeetingMLD.data.id }"
+                            android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.currentMeetingMLD.data.dateFin : viewModel.currentMeetingMLD.data.id }'
                             />
                     </LinearLayout>
                 </LinearLayout>

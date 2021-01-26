@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.spaces.D3P3Space
 import com.example.rickandmorty.data.entities.spaces.D3P3SpaceList
-import com.example.rickandmorty.data.repository.CharacterRepository
 import com.example.rickandmorty.data.repository.D3P3SpaceRepository
 import com.example.rickandmorty.utils.Resource
 import kotlinx.coroutines.*
