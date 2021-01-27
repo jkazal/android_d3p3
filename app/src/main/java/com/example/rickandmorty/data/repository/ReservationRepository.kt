@@ -1,5 +1,6 @@
 package com.example.rickandmorty.data.repository
 
+import android.util.Log
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.Info
@@ -155,9 +156,21 @@ class ReservationRepository @Inject constructor(
         return Resource.success<Reservation>(reservation1)
     }
 
-    suspend fun createReservation(startTime: String, endTime: String, date: String, topicName: String, userIdArray: ArrayList<String>, roomId: String, userLogin: String, userPassword: String) : Resource<ReservationAddResult> {
-        return remoteDataSource.createReservation(
-            startTime, endTime, date, topicName, userIdArray, roomId, userLogin, userPassword
-        )
+    suspend fun createReservation(startTime: String,
+                                  endTime: String,
+                                  date: String,
+                                  topicName: String,
+                                  userIdArray: ArrayList<String>,
+                                  roomId: String,
+                                  userLogin: String,
+                                  userPassword: String) : Resource<ReservationAddResult> {
+        Log.d("Johann", "frag3_valid")
+
+        Log.d("userLogin", userLogin)
+        Log.d("userPassword", userPassword)
+        return Resource.success(ReservationAddResult(0, "Done"))
+        //return remoteDataSource.createReservation(
+        //    startTime, endTime, date, topicName, userIdArray, roomId, userLogin, userPassword
+        //)
     }
 }

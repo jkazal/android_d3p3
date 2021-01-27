@@ -33,4 +33,7 @@
     <string name="meetings_for">Meetings on </string>
     <string name="settings_fragment">Settingsfragmenttest</string>
     <string name="user_already_selected">This user was already selected.</string>
+    <string name="end_time_before">The end time cannot be before the start time.</string>
+    <string name="at_least_one_user">You must select at least one user.</string>
+    <string name="form_invalid">The form data provided is invalid. Please verify the values above.</string>
 </resources>

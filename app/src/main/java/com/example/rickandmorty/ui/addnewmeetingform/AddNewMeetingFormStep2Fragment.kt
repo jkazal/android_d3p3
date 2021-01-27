@@ -43,14 +43,20 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
         viewModel.initAddNewMeetingFormStep2()
 
         binding.addNewForm2Next.setOnClickListener {
-            val bundle = bundleOf(
-                "topicName" to viewModel.topicName,
-                "date" to viewModel.selectedDay,
-                "startTime" to viewModel.selectedStartTime,
-                "endTime" to viewModel.selectedEndTime,
-                "userIdArray" to viewModel.selectedUsersArray
-            )
-            findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment, bundle)
+            if ( viewModel.selectedUsersArray.size == 0 ) {
+                Toast.makeText(requireContext(), R.string.at_least_one_user, Toast.LENGTH_LONG).show()
+            }
+            else {
+                val bundle = bundleOf(
+                    "topicName" to viewModel.topicName,
+                    "date" to viewModel.selectedDay,
+                    "startTime" to viewModel.selectedStartTime,
+                    "endTime" to viewModel.selectedEndTime,
+                    "userIdArray" to viewModel.selectedUsersArray
+                )
+                findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment, bundle)
+
+            }
         }
     }
 

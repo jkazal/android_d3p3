@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -51,7 +52,7 @@ class AddNewMeetingFormStep1Fragment : Fragment() {
             val c: Calendar = Calendar.getInstance()
             viewModel.selectedDay.postValue(
                 c.get(Calendar.YEAR).toString() + "-"
-                        + c.get(Calendar.MONTH).toString() + "-"
+                        + (c.get(Calendar.MONTH)+1).toString() + "-"
                         + c.get(Calendar.DAY_OF_MONTH)
             )
 
@@ -103,20 +104,41 @@ class AddNewMeetingFormStep1Fragment : Fragment() {
 
         binding.addNewForm1Next.setOnClickListener {
             // Prepare Bundle for next step
-            val bundle = bundleOf(
-                "topicName" to viewModel.topicName.value,
-                "date" to viewModel.selectedDay.value,
-                "startTime" to viewModel.selectedStartTime.value,
-                "endTime" to viewModel.selectedEndTime.value
-            )
-            findNavController().navigate(R.id.action_addNewMeetingFormStep1Fragment_to_addNewMeetingFormStep2Fragment, bundle)
+
+            if ( viewModel.topicName.value.equals("")
+                || viewModel.selectedDay.value.equals("")
+                || viewModel.selectedEndTime.value.equals("")
+                || viewModel.selectedStartTime.value.equals("")
+            ) {
+                Toast.makeText(requireContext(), R.string.form_invalid, Toast.LENGTH_SHORT).show()
+            }
+            else {
+
+                var lsEndTime = viewModel.selectedEndTime.value
+                var lsStartTime = viewModel.selectedStartTime.value
+                var lsEndInt = lsEndTime?.let { it1 -> turnTimeToNumber(it1) }
+                var lsStartInt = lsStartTime?.let { it1 -> turnTimeToNumber(it1) }
+
+                var lbEndIsBeforeStart = (lsEndInt!! < lsStartInt!!)
+
+                if ( lbEndIsBeforeStart ) {
+                    Toast.makeText(requireContext(), R.string.end_time_before, Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val bundle = bundleOf(
+                        "topicName" to viewModel.topicName.value,
+                        "date" to viewModel.selectedDay.value,
+                        "startTime" to viewModel.selectedStartTime.value,
+                        "endTime" to viewModel.selectedEndTime.value
+                    )
+                    findNavController().navigate(R.id.action_addNewMeetingFormStep1Fragment_to_addNewMeetingFormStep2Fragment, bundle)
+                }
+            }
         }
     }
 
-//    override fun onClickedCharacter(characterId: Int) {
-//        findNavController().navigate(
-//            R.id.action_addNewMeetingFormStep1Fragment_to_addNewMeetingFormStep2Fragment,
-//            bundleOf()
-//        )
-//    }
+    fun turnTimeToNumber(time: String): Int {
+        val strNew = time.replace(":", "")
+        return Integer.parseInt(strNew)
+    }
 }
