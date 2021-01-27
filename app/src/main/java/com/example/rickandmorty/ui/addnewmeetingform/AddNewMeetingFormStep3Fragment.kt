@@ -1,6 +1,7 @@
 package com.example.rickandmorty.ui.addnewmeetingform
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,5 +74,11 @@ class AddNewMeetingFormStep3Fragment  constructor(
         arguments?.getString("endTime")?.let { viewModel.selectedEndTime = it }
         arguments?.getString("topicName")?.let { viewModel.topicName = it }
         arguments?.getStringArrayList("userIdArray")?.let { viewModel.selectedUserArray = it}
+        Log.d("Johann", "fragment3")
+        Log.d("Johann", viewModel.selectedDay)
+        Log.d("Johann", viewModel.selectedStartTime)
+        Log.d("Johann", viewModel.selectedEndTime)
+        Log.d("Johann", viewModel.topicName)
+        Log.d("Johann", viewModel.selectedUserArray.toString())
     }
 }

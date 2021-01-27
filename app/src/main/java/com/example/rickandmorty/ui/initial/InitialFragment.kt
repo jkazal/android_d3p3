@@ -1,5 +1,6 @@
 package com.example.rickandmorty.ui.initial
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -26,6 +27,9 @@ import com.example.rickandmorty.databinding.InitialFragmentBinding
 import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
@@ -70,6 +74,31 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
             findNavController().navigate(R.id.action_initialFragment_to_addNewMeetingFormStep1Fragment)
         }
 
+        // Gestion des dates
+
+        binding.selectDateBtn.setOnClickListener {
+            // Open datepicker
+            val c: Calendar = Calendar.getInstance()
+
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    viewModel.date = dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year
+                    viewModel.getUpcomingMeetings()
+                },
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH) + 1,
+                c.get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.show()
+        }
+
+        binding.setDateToTodayBtn.setOnClickListener{
+            viewModel.date = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault()).format(Date())
+            Log.d("Johann", SimpleDateFormat("YYYY-MM-dd", Locale.getDefault()).format(Date()))
+            Log.d("Johann", viewModel.date)
+            viewModel.getUpcomingMeetings()
+        }
         loadContents()
     }
 

@@ -11,8 +11,8 @@
     <string name="none">None</string>
     <string name="organizer">Organizer</string>
     <string name="meeting_name">Topic</string>
-    <string name="date_start">Début</string>
-    <string name="date_end">Fin</string>
+    <string name="date_start">Start</string>
+    <string name="date_end">End</string>
     <string name="participants">Participants</string>
     <string name="loading">Loading</string>
     <string name="date">Date</string>
@@ -29,5 +29,8 @@
     <string name="finish">Add meeting</string>
     <string name="search">Search</string>
     <string name="view">View details</string>
-    <string name="refresh">Refresh</string>
+    <string name="refresh">Refresh status</string>
+    <string name="meetings_for">Meetings on </string>
+    <string name="settings_fragment">Settingsfragmenttest</string>
+    <string name="user_already_selected">This user was already selected.</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.rickandmorty.ui.addnewmeetingform
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,7 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
                 "date" to viewModel.selectedDay,
                 "startTime" to viewModel.selectedStartTime,
                 "endTime" to viewModel.selectedEndTime,
-                "userIdArray" to viewModel.selectedUsers
+                "userIdArray" to viewModel.selectedUsersArray
             )
             findNavController().navigate(R.id.action_addNewMeetingFormStep2Fragment_to_addNewMeetingFormStep3Fragment, bundle)
         }
@@ -59,6 +60,11 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
         arguments?.getString("startTime")?.let { viewModel.selectedStartTime = it }
         arguments?.getString("endTime")?.let { viewModel.selectedEndTime = it }
         arguments?.getString("topicName")?.let { viewModel.topicName = it }
+        Log.d("Johann", viewModel.selectedDay)
+        Log.d("Johann", viewModel.selectedStartTime)
+        Log.d("Johann", viewModel.selectedEndTime)
+        Log.d("Johann", viewModel.topicName)
+
         setupRecyclerView()
         setupObservers()
     }
@@ -94,7 +100,11 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
         // TODO Gérer le fait qu'il soit déjà sélectionné ou non
         if ( !viewModel.selectedUsersArray.contains(id) ) {
             viewModel.selectedUsersArray.add(id)
+            Log.d("Johann", id)
             viewModel.selectedUsers.postValue(viewModel.selectedUsersArray)
+        }
+        else {
+            Toast.makeText(requireContext(), R.string.user_already_selected, Toast.LENGTH_LONG).show()
         }
 
     }

@@ -83,5 +83,8 @@
             app:argType="string" />
         <argument
             android:name="userIdArray" />
+        <argument
+            android:name="topicName"
+            app:argType="string" />
     </fragment>
 </navigation>

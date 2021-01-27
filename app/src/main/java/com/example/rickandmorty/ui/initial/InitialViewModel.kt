@@ -32,6 +32,7 @@ class InitialViewModel @ViewModelInject constructor(
     var date: String = ""
     var roomId: String = ""
 
+    var dateMLD = MutableLiveData<String>("")
     var roomNumberMLD = MutableLiveData<String>("")
     var openLabelMLD = MutableLiveData<String>("")
     val closedLabelMLD = MutableLiveData<String>("")
@@ -65,24 +66,10 @@ class InitialViewModel @ViewModelInject constructor(
 
     fun getUpcomingMeetings() {
         launch {
-//            val settings: LiveData<SettingsEntity> = settingsDao.getCurrentSettings()
-//            upcomingMeetings.postValue(settings.value?.roomId?.let {
-//                settings.value?.date?.let { it1 ->
-//                    reservationRepository.getUpcomingMeetingsForDate(
-//                        it,
-//                        it1
-//                    )
-//                }
-//            })
+            dateMLD.postValue(date)
             roomNumberMLD.postValue(roomId)
-            openLabelMLD.postValue("Open")
-            closedLabelMLD.postValue("Closed")
             Log.d("Johann", "getUpcomingMeetingData")
             upcomingMeetings.postValue(reservationRepository.getUpcomingMeetingsForDate(roomId, date))
-
-            // si on arrive pas à lire de la base de manière sync :
-            // val settingsEntity: SettingsEntity = settingsDao.getCurrentSettings() // (avec getCurrentSettings ne renvoyant pas un livedata)
-            // upcomingMeetings.postValue(settingsEntity.roomId, settingsEntity.date)
         }
     }
 

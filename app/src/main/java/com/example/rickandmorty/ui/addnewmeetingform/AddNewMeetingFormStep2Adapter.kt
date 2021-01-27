@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.example.rickandmorty.R
 import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.databinding.ItemCharacterBinding
@@ -52,6 +53,9 @@ class UserViewHolder(private val itemBinding: ItemSelectableparticipantBinding, 
     }
 
     override fun onClick(v: View?) {
+        if (v != null) {
+            v.alpha = 0.25F
+        }
         listener.onSelectUser(user.id)
     }
 }

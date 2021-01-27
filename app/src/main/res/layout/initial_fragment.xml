@@ -18,49 +18,19 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent">
             <LinearLayout
-                android:layout_weight="0.5"
+                android:layout_weight="0.25"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    >
-                    <Button
-                        android:id="@+id/setDateToTodayBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/set_date_to_today" />
-                    <Button
-                        android:id="@+id/selectDateBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/select_date"
-                        />
-                    <Button
-                        android:id="@+id/newReservationBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/place_new_reservation"
-                        android:backgroundTint="@color/success"/>
-                    <Button
-                        android:id="@+id/refreshStatusBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/refresh"
-                        android:backgroundTint="@color/info"/>
-
-                </LinearLayout>
                 <TextView
                     android:id="@+id/roomNumberHolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
-                    android:text="@={viewModel.roomNumberMLD}"
-                    android:background="@color/colorAccent"
+                    android:text="@{viewModel.roomNumberMLD }"
+                    android:background="@color/bootStrapDefault"
+                    android:textColor="@color/white"
                     android:gravity="center"/>
                 <TextView
                     android:id="@+id/openStatusHolder"
@@ -68,9 +38,10 @@
                     android:layout_height="wrap_content"
                     android:textSize="80sp"
                     android:text='@{!viewModel.currentMeetingMLD.data.id.equals("0")? @string/occupied_room : @string/open_room }'
-                    android:background='@{!viewModel.currentMeetingMLD.data.id.equals("0")? @color/warning : @color/success }'
+                    android:background='@{!viewModel.currentMeetingMLD.data.id.equals("0")? @color/danger : @color/success }'
+                    android:gravity="center"
+                    android:textColor="@color/white"/>
 
-                    android:gravity="center"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,7 +63,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/organizer"
                             android:layout_gravity="right"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
 
                     </LinearLayout>
@@ -125,7 +97,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/meeting_name"
                             android:layout_gravity="right"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="0.75"
@@ -139,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text='@{viewModel.currentMeetingMLD.data.id.equals("0")? viewModel.currentMeetingMLD.data.id : viewModel.currentMeetingMLD.data.topicName }'
-                             />
+                            />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
@@ -155,7 +128,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/date_start"
                             android:layout_gravity="right"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="0.75"
@@ -214,10 +188,45 @@
                 >
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/setDateToTodayBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/set_date_to_today" />
+                    <Button
+                        android:id="@+id/selectDateBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/select_date"
+                        />
+                    <Button
+                        android:id="@+id/newReservationBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/place_new_reservation"
+                        android:backgroundTint="@color/success"/>
+                    <Button
+                        android:id="@+id/refreshStatusBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/refresh"
+                        android:backgroundTint="@color/info"/>
+
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="vertical">
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{ @string/meetings_for + " " + viewModel.dateMLD}'
+                        android:textSize="20sp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"

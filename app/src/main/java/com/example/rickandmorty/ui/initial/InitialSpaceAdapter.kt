@@ -51,9 +51,9 @@ class UpcomingMeetingViewHolder(private val itemBinding: ItemUpcomingeventBindin
     fun bind(item: Reservation) {
         this.reservation = item
         itemBinding.eventName.text = item.label
-        itemBinding.organizerLabel.text = "Organisateur: " + item.organizer.email
-        itemBinding.StartsAtLabel.text = "Début: " + item.dateDebut
-        itemBinding.EndsAtLabel.text = "Fin: " + item.dateFin
+        itemBinding.organizerLabel.text = item.organizer.email
+        itemBinding.StartsAtLabel.text = "START: " + item.dateDebut
+        itemBinding.EndsAtLabel.text = "END: " + item.dateFin
     }
 
     override fun onClick(v: View?) {

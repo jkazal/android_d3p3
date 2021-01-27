@@ -81,7 +81,7 @@ class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
         // Write roomId to json file
         val filename = "config.json"
         Log.d("Johann","Clicked Room in Rv")
-        val curDate = SimpleDateFormat("YYYY-mm-dd", Locale.getDefault()).format(Date())
+        val curDate = SimpleDateFormat("YYYY-MM-dd", Locale.getDefault()).format(Date())
         val jObject = JsonObject()
         jObject.addProperty("roomId", roomId)
         jObject.addProperty("date", curDate)
