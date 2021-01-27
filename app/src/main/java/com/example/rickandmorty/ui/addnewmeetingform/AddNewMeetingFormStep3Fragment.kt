@@ -22,12 +22,12 @@ import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBindin
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep3FragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
+import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 @AndroidEntryPoint
-class AddNewMeetingFormStep3Fragment  constructor(
-    private val settingsRepository: SettingsRepository
-) : Fragment() {
+class AddNewMeetingFormStep3Fragment : Fragment() {
 
     private var binding: AddNewMeetingFormStep3FragmentBinding by autoCleared()
     private val viewModel: AddNewMeetingFormStep3ViewModel by viewModels()
@@ -47,7 +47,10 @@ class AddNewMeetingFormStep3Fragment  constructor(
         super.onStart()
 
         // envoi du roomId au formulaire
-        viewModel.roomId = settingsRepository.getCurrentRoomId(requireContext())
+        val file = File(requireContext().filesDir, "config.json")
+        val content: String = String(file.readBytes())
+        val jso = JsonParser().parse(content).asJsonObject
+        viewModel.roomId = jso.get("roomId").asString
         binding.addNewForm3Validate.setOnClickListener {
             // Envoyer le formulaire et retourner au fragment initial
             // Récupérer le roomid
