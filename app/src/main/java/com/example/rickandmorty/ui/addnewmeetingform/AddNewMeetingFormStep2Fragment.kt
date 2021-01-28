@@ -20,6 +20,7 @@ import com.example.rickandmorty.utils.autoCleared
 import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter.UserItemListener {
@@ -70,7 +71,7 @@ class AddNewMeetingFormStep2Fragment : Fragment(), AddNewMeetingFormStep2Adapter
         Log.d("Johann", viewModel.selectedStartTime)
         Log.d("Johann", viewModel.selectedEndTime)
         Log.d("Johann", viewModel.topicName)
-
+        requireActivity().toolbar.setTitle(R.string.add_label)
         setupRecyclerView()
         setupObservers()
     }

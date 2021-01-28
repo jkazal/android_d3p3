@@ -24,6 +24,7 @@ import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
 import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 @AndroidEntryPoint
@@ -83,5 +84,6 @@ class AddNewMeetingFormStep3Fragment : Fragment() {
         Log.d("Johann", viewModel.selectedEndTime)
         Log.d("Johann", viewModel.topicName)
         Log.d("Johann", viewModel.selectedUserArray.toString())
+        requireActivity().toolbar.setTitle(R.string.add_label)
     }
 }

@@ -36,4 +36,8 @@
     <string name="end_time_before">The end time cannot be before the start time.</string>
     <string name="at_least_one_user">You must select at least one user.</string>
     <string name="form_invalid">The form data provided is invalid. Please verify the values above.</string>
+
+    <string name="settings_label">Space list</string>
+    <string name="initial_label">Space information</string>
+    <string name="add_label">Booking creation form</string>
 </resources>

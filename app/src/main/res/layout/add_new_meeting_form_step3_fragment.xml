@@ -31,6 +31,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:text="@={viewModel.userNameMLD}"
+                android:inputType="text"
+                android:singleLine="true"
                 android:hint="@string/your_login"/>
             <EditText
                 android:id="@+id/addNewForm3PasswordInput"
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:inputType="textPassword"
+                android:singleLine="true"
                 android:text="@={viewModel.userPasswordMLD}"
                 android:hint="@string/your_password"/>
 

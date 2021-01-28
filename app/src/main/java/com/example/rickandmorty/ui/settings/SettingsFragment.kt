@@ -20,6 +20,8 @@ import com.example.rickandmorty.utils.autoCleared
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,6 +49,9 @@ class SettingsFragment : Fragment(), SettingsAdapter.SettingItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().toolbar.setTitle(R.string.settings_label)
+
         setupRecyclerView()
         setupObservers()
     }

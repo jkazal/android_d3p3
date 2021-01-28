@@ -26,6 +26,7 @@ import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBindin
 import com.example.rickandmorty.databinding.InitialFragmentBinding
 import com.google.gson.JsonParser
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -112,6 +113,7 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().toolbar.setTitle(R.string.initial_label)
         setupRecyclerView()
         setupObservers()
     }

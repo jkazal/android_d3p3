@@ -17,6 +17,7 @@ import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
 import com.example.rickandmorty.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
@@ -35,6 +36,12 @@ class AddNewMeetingFormStep1Fragment : Fragment() {
         binding.viewModel = this.viewModel
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().toolbar.setTitle(R.string.add_label)
+    }
+
 
     override fun onStart() {
         super.onStart()
