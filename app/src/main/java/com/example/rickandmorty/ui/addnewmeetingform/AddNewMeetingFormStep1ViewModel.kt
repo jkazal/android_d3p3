@@ -14,17 +14,4 @@ class AddNewMeetingFormStep1ViewModel @ViewModelInject constructor(
     val selectedDay = MutableLiveData<String>("")
     val selectedStartTime = MutableLiveData<String>("")
     val selectedEndTime = MutableLiveData<String>("")
-
-    // Si ces méthodes ne fonctionnent pas, passer par le onClickListener
-    fun setMeetingDate() {
-
-    }
-
-    fun setMeetingStartTime() {
-
-    }
-
-    fun setMeetingEndTime() {
-
-    }
 }

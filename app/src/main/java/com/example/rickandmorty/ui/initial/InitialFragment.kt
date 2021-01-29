@@ -16,10 +16,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.CharactersFragmentBinding
 import com.example.rickandmorty.utils.Resource
 import com.example.rickandmorty.utils.autoCleared
-import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
@@ -62,7 +60,6 @@ class InitialFragment : Fragment(), InitialSpaceAdapter.InitialItemListener {
         val date = jso.get("date").asString
         Log.d("Johann", roomId)
         Log.d("Johann", date)
-        // val dateValue = settingsRepository.getCurrentSelectedDate(requireContext())
         viewModel.date = date
         viewModel.roomId = roomId
 

@@ -1,7 +1,5 @@
 package com.example.rickandmorty.data.repository
 
-import com.example.rickandmorty.data.entities.Character
-import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.Info
 import com.example.rickandmorty.data.entities.spaces.D3P3Space
 import com.example.rickandmorty.data.entities.spaces.D3P3SpaceList

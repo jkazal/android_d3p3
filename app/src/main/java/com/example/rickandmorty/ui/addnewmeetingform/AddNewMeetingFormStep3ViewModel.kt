@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
-import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.reservation.ReservationAddResult
 import com.example.rickandmorty.data.repository.ReservationRepository
 import com.example.rickandmorty.data.repository.SettingsRepository
@@ -46,19 +45,6 @@ class AddNewMeetingFormStep3ViewModel @ViewModelInject constructor(
             ))
         }
     }
-
-//    private val _id = MutableLiveData<Int>()
-//
-////    private val _character = _id.switchMap { id ->
-////        repository.getCharacter(id)
-////    }
-//    val character: LiveData<Resource<Character>> = _character
-//
-//
-//    fun start(id: Int) {
-//        _id.value = id
-//    }
-
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.IO

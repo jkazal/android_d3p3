@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rickandmorty.R
-import com.example.rickandmorty.data.entities.SettingsEntity
 import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.entities.reservation.ReservationList
 import com.example.rickandmorty.data.repository.ReservationRepository
@@ -27,8 +26,7 @@ class InitialViewModel @ViewModelInject constructor(
 ) : ViewModel(), CoroutineScope {
 
     val upcomingMeetings : MutableLiveData<Resource<ReservationList>> = MutableLiveData<Resource<ReservationList>>()
-    var currentTime: String =
-        SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+
     var date: String = ""
     var roomId: String = ""
 
@@ -43,14 +41,6 @@ class InitialViewModel @ViewModelInject constructor(
         getUpcomingMeetings()
     }
 
-    fun turnTimeToNumber(time: String): Int {
-        val strNew = time.replace(":", "")
-        return Integer.parseInt(strNew)
-    }
-
-    fun getSettingsRepo () : SettingsRepository{
-        return settingsRepository
-    }
     fun String.insert(index: Int, string: String): String {
         return this.substring(0, index) + string + this.substring(index, this.length)
     }
@@ -77,8 +67,6 @@ class InitialViewModel @ViewModelInject constructor(
         launch {
             Log.d("Johann", "getCurrentData")
             currentMeetingMLD.postValue(reservationRepository.getCurrentMeetingForRoom(roomId) )
-            val reservationId = currentMeetingMLD.value?.data?.id
-
         }
     }
     override val coroutineContext: CoroutineContext

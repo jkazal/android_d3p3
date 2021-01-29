@@ -6,21 +6,6 @@
     app:startDestination="@id/settingsFragment">
 
     <fragment
-        android:id="@+id/charactersFragment"
-        android:name="com.example.rickandmorty.ui.characters.CharactersFragment"
-        android:label="Characters"
-        tools:layout="@layout/characters_fragment">
-        <action
-            android:id="@+id/action_charactersFragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
-
-    </fragment>
-    <fragment
-        android:id="@+id/characterDetailFragment"
-        android:name="com.example.rickandmorty.ui.characterdetail.CharacterDetailFragment"
-        android:label="Character Detail"
-        tools:layout="@layout/character_detail_fragment" />
-    <fragment
         android:id="@+id/initialFragment"
         android:name="com.example.rickandmorty.ui.initial.InitialFragment"
         android:label="initial_fragment"

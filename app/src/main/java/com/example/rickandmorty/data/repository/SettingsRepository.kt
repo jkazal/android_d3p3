@@ -3,7 +3,6 @@ package com.example.rickandmorty.data.repository
 import android.R.attr.path
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.rickandmorty.data.entities.SettingsEntity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import java.io.File

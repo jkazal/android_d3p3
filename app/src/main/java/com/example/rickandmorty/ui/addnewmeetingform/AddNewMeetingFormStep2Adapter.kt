@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.rickandmorty.R
-import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.databinding.ItemCharacterBinding
 import com.example.rickandmorty.databinding.ItemSelectableparticipantBinding

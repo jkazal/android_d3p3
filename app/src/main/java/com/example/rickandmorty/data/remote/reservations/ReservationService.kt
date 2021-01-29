@@ -8,11 +8,6 @@ import retrofit2.http.*
 
 
 interface ReservationService {
-//    @GET("character")
-//    suspend fun getAllCharacters() : Response<CharacterList>
-//
-//    @GET("character/{id}")
-//    suspend fun getCharacter(@Path("id") id: Int): Response<Character>
 
     @GET("reservations/upcoming?roomId={roomId}&date={YyyyMmDdDate}")
     suspend fun getReservations(@Path("roomId") roomId: String,
@@ -35,7 +30,6 @@ interface ReservationService {
     @GET("reservations/{reservationId}")
     suspend fun getReservationById ( @Field("reservationId") reservationId: String) : Response<Reservation>
 
-    // Si il n'y a pas de meeting pour la salle donnée, on affiche rien
     @GET("reservations/{roomId}/current")
     suspend fun getCurrentMeetingForRoom ( @Field("roomId") roomId: String) : Response<Reservation>
 }

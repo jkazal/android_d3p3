@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.rickandmorty.R
-import com.example.rickandmorty.data.entities.Character
 import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.data.repository.SettingsRepository
 import com.example.rickandmorty.databinding.AddNewMeetingFormStep1FragmentBinding
@@ -54,8 +53,8 @@ class AddNewMeetingFormStep3Fragment : Fragment() {
         viewModel.roomId = jso.get("roomId").asString
         binding.addNewForm3Validate.setOnClickListener {
             // Envoyer le formulaire et retourner au fragment initial
-            // Récupérer le roomid
-
+            Log.d("johann", viewModel.userPasswordMLD.value)
+            Log.d("johann", viewModel.userNameMLD.value)
             viewModel.sendMeeting()
             viewModel.results.observe(viewLifecycleOwner, Observer {
                 when (it.status) {

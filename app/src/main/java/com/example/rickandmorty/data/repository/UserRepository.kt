@@ -1,7 +1,6 @@
 package com.example.rickandmorty.data.repository
 
-import com.example.rickandmorty.data.entities.Character
-import com.example.rickandmorty.data.entities.CharacterList
+
 import com.example.rickandmorty.data.entities.Info
 import com.example.rickandmorty.data.entities.user.User
 import com.example.rickandmorty.data.entities.user.UserList
@@ -16,7 +15,6 @@ import kotlin.coroutines.CoroutineContext
 
 class UserRepository @Inject constructor(
     private val remoteDataSource: UserRemoteDataSource
-    // private val localDataSource: CharacterDao
 ) {
     suspend fun getUsers(): Resource<UserList> {
         // return remoteDataSource.getAllUsers()
@@ -49,26 +47,5 @@ class UserRepository @Inject constructor(
         userArray.add(u12)
         var userList = UserList(listInfo, userArray)
         return Resource.success(userList)
-
     }
-    //suspend fun getCharacter(id: Int) : Character? {
-    //    return remoteDataSource.getCharacter(id).data
-    //}
-
-    //suspend fun getCharacters(): Resource<CharacterList> {
-    //    return remoteDataSource.getCharacters()
-    //}
-
-
-//    fun getCharacter(id: Int) = performGetOperation(
-//        databaseQuery = { localDataSource.getCharacter(id) },
-//        networkCall = { remoteDataSource.getCharacter(id) },
-//        saveCallResult = { localDataSource.insert(it) }
-//    )
-//
-//    fun getCharacters() = performGetOperation(
-//        databaseQuery = { localDataSource.getAllCharacters() },
-//        networkCall = { remoteDataSource.getCharacters() },
-//        saveCallResult = { res -> localDataSource.insertAll(res.results) }
-//    )
 }

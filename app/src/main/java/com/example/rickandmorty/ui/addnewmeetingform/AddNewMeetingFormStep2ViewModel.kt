@@ -5,7 +5,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.data.entities.CharacterList
 import com.example.rickandmorty.data.entities.user.UserList
 import com.example.rickandmorty.data.repository.UserRepository
 import com.example.rickandmorty.utils.Resource
@@ -25,9 +24,6 @@ class AddNewMeetingFormStep2ViewModel @ViewModelInject constructor(
 
     var selectedUsers = MutableLiveData<ArrayList<String>>()
     var selectedUsersArray = ArrayList<String>()
-
-    // TODO: Remplir les vals topicName/selectedDay/etc. par les arguments de navigation (bundle)
-    // ceci a été fait da,s le fragment
 
     fun initAddNewMeetingFormStep2() {
         launch {

@@ -7,8 +7,6 @@ class ReservationRemoteDataSource @Inject constructor(
     private val reservationService: ReservationService
 ): BaseDataSource() {
 
-//    suspend fun getCharacters() = getResult { reservationService.getAllCharacters() }
-//    suspend fun getCharacter(id: Int) = getResult { reservationService.getCharacter(id) }
     // NOTE: La date doit être au format YYYY-MM-DD. (ex: 2021-01-09)
     suspend fun getUpcomingMeetingsForDate(
         roomId: String,

@@ -1,8 +1,7 @@
 package com.example.rickandmorty.data.repository
 
 import android.util.Log
-import com.example.rickandmorty.data.entities.Character
-import com.example.rickandmorty.data.entities.CharacterList
+
 import com.example.rickandmorty.data.entities.Info
 import com.example.rickandmorty.data.entities.reservation.Reservation
 import com.example.rickandmorty.data.entities.reservation.ReservationAddResult
@@ -164,13 +163,15 @@ class ReservationRepository @Inject constructor(
                                   roomId: String,
                                   userLogin: String,
                                   userPassword: String) : Resource<ReservationAddResult> {
+
+        //return remoteDataSource.createReservation(
+        //    startTime, endTime, date, topicName, userIdArray, roomId, userLogin, userPassword
+        //)
+        // [MOCK]
         Log.d("Johann", "frag3_valid")
 
         Log.d("userLogin", userLogin)
         Log.d("userPassword", userPassword)
         return Resource.success(ReservationAddResult(0, "Done"))
-        //return remoteDataSource.createReservation(
-        //    startTime, endTime, date, topicName, userIdArray, roomId, userLogin, userPassword
-        //)
     }
 }
